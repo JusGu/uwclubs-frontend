@@ -23,11 +23,8 @@ export default function EventList({ events }: iEventListProps) {
 const EventComponent = ({ event }: { event: event }) => {
     const formatTime = (time: string) => {
       const date = new Date(time);
-      return date.toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "numeric",
-      });
-    };
+      return date.toTimeString().split(" ")[0];
+    }
     return (
       <div className="p-4 bg-white rounded-lg">
         <h2 className="mb-2 text-xl font-bold text-gray-700">{event.title}</h2>
