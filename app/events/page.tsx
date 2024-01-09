@@ -8,17 +8,35 @@ export default function Page() {
   const [events, setEvents] = useState<event[]>([]);
   const supabase = createClient();
 
+  const getData = async () => {
+    const { data } = await supabase.from("events").select(`
+    id,
+    title,
+    start_time,
+    end_time,
+    location,
+    description,
+    guilds ( short_name )
+    `);
+
+    // will fix this later not sure why it's not working
+    // @ts-ignore
+    setEvents(data as event[]);
+  };
+
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await supabase.from("events").select();
-      setEvents(data as event[]);
-    };
     getData();
   }, []);
+
   // Create a function to handle inserts
-  const handleInserts = (payload: any) => {
+  const handleInserts = async (payload: any) => {
     const { new: event } = payload as PostgresChangePayload;
-    console.log("New event", event);
+    const { data } = await supabase.from("guilds").select(`
+    short_name
+    `).eq('id', event.guild_id);
+    if (data) {
+      event.guilds = data[0];
+    }
     setEvents((events) => [...events, event]);
   };
 
@@ -28,16 +46,14 @@ export default function Page() {
     .on(
       "postgres_changes",
       { event: "INSERT", schema: "public", table: "events" },
-      handleInserts
+      getData
     )
     .subscribe();
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="p-6 max-w-sm mx-auto rounded-xl">
+    <div className="w-1/2 p-10">
         <h1 className="text-2xl font-bold">Events</h1>
         <EventList events={events} />
-      </div>
     </div>
   );
 }

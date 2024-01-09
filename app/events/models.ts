@@ -1,14 +1,16 @@
 export interface event {
     id: string;
-    created_at: string;
-    updated_at: string;
-    deleted_at: string | null;
     title: string;
     start_time: string;
     end_time: string;
     description: string;
     location: string;
-    link: string | null;
+    guild_id: string;
+    guilds: Guild;
+}
+
+interface Guild {
+    short_name: string;
 }
 
 export interface PostgresChangePayload {
