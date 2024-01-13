@@ -1,5 +1,5 @@
 "use client";
-import { PostgresChangePayload, event } from "./models";
+import { event } from "./models";
 import EventList from "../../components/events/Eventlist";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
@@ -16,6 +16,9 @@ export default function Page() {
     end_time,
     location,
     description,
+    guild_id,
+    channel_id,
+    message_id,
     guilds ( short_name )
     `);
 
@@ -39,9 +42,9 @@ export default function Page() {
     .subscribe();
 
   return (
-    <div className="w-full sm:w-1/2 p-6 cursor-pointer">
-        <h1 className="text-2xl font-bold">Events</h1>
-        <EventList events={events} />
+    <div className="w-full sm:w-1/2 p-6">
+      <h1 className="text-2xl font-bold">Events</h1>
+      <EventList events={events} />
     </div>
   );
 }

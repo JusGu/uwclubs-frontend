@@ -6,6 +6,8 @@ export interface event {
     description: string;
     location: string;
     guild_id: string;
+    channel_id: string;
+    message_id: string;
     guilds: Guild;
 }
 
