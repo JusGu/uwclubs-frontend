@@ -28,18 +28,6 @@ export default function Page() {
     getData();
   }, []);
 
-  // Create a function to handle inserts
-  const handleInserts = async (payload: any) => {
-    const { new: event } = payload as PostgresChangePayload;
-    const { data } = await supabase.from("guilds").select(`
-    short_name
-    `).eq('id', event.guild_id);
-    if (data) {
-      event.guilds = data[0];
-    }
-    setEvents((events) => [...events, event]);
-  };
-
   // Listen to inserts
   supabase
     .channel("events")
@@ -51,7 +39,7 @@ export default function Page() {
     .subscribe();
 
   return (
-    <div className="w-1/2 p-10">
+    <div className="w-full sm:w-1/2 p-6 cursor-pointer">
         <h1 className="text-2xl font-bold">Events</h1>
         <EventList events={events} />
     </div>

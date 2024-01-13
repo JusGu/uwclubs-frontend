@@ -55,8 +55,8 @@ const EventComponent = ({ event }: { event: event }) => {
         <CardDescription>@{event.guilds.short_name}</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex items-center space-x-2">
-          <Alert>
+        <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-x-2 sm:space-y-0">
+          <Alert className="w-full">
             <Calendar className="h-4 w-4" />
             <AlertTitle>{getMonthDate(event.start_time)}</AlertTitle>
             <AlertDescription>
@@ -64,19 +64,12 @@ const EventComponent = ({ event }: { event: event }) => {
             </AlertDescription>
           </Alert>
           {event.location && (
-            <Alert>
+            <Alert className="w-full">
               <MapPin className="h-4 w-4" />
               <AlertTitle>Location</AlertTitle>
               <AlertDescription>{event.location}</AlertDescription>
             </Alert>
           )}
-          {event.description && (
-            <Alert>
-              <AlertTitle>Description</AlertTitle>
-              <AlertDescription>{event.description}</AlertDescription>
-            </Alert>
-          )}
-          
         </div>
       </CardContent>
     </Card>
