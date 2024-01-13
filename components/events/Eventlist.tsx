@@ -1,5 +1,5 @@
 "use client";
-import { event } from "./models";
+import { event } from "../../app/events/models";
 import {
   Card,
   CardContent,

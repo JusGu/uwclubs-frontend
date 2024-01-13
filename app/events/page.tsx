@@ -1,6 +1,6 @@
 "use client";
 import { PostgresChangePayload, event } from "./models";
-import EventList from "./eventlist";
+import EventList from "../../components/events/Eventlist";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 
