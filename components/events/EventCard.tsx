@@ -53,7 +53,6 @@ export default function EventCard({ event_id }: { event_id: string }) {
 
   const getMessageLink = (event: event) => {
     return `discord://discord.com/channels/${event.guild_id}/${event.channel_id}/${event.message_id}`;
-    // return "discord://discord.com/channels/1181758130544197732/1182195509297958952/1193600793056641086"
   }
   if (error) {
     return <div>Event not found</div>;

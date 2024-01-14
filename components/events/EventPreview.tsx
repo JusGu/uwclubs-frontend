@@ -10,7 +10,7 @@ export default function EventPreview({
     onClick: () => void;
   }) {
     return (
-      <Card className="cursor-pointer" onClick={onClick}>
+      <Card className="cursor-pointer hover:border-gray-400" onClick={onClick}>
         <CardHeader>
           <CardTitle>{event.title}</CardTitle>
           <CardDescription>@{event.guilds.short_name}</CardDescription>
