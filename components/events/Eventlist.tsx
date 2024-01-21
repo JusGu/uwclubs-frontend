@@ -25,7 +25,7 @@ export default function EventList() {
     channel_id,
     message_id,
     guilds ( short_name )
-    `);
+    `).order('start_time', { ascending: true });
 
     // will fix this later not sure why it's not working
     // @ts-ignore
