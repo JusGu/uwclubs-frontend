@@ -47,7 +47,7 @@ export default function EventList() {
     )
     .subscribe();
 
-  return loading ? (
+  return loading || events.length === 0 ? (
     <div className="grid grid-cols-1 gap-4">
       <EventPreviewSkeleton />
       <EventPreviewSkeleton />
