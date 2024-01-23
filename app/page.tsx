@@ -5,6 +5,7 @@ export default async function Index() {
 
   return (
     <div className="flex flex-col items-center min-h-screen w-full h-full" style={{ backgroundColor: "#255270" }}>
+      <style>{`body { background-color: #255270; }`}</style>
       <div className="flex flex-col w-4/5 md:w-1/2 h-screen items-stretch justify-center">
       <Rive src="/hero.riv"
        style={{ width: '100%' }}

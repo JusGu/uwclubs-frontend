@@ -53,7 +53,7 @@ export default function RootLayout({
         <link rel="icon" href="favicon.ico" />
       </head>
 
-      <body className="bg-background text-foreground">
+      <body>
         <main className="min-h-screen flex flex-col items-center">
           {children}
         </main>
