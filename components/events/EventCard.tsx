@@ -1,4 +1,3 @@
-"use client";
 import {
   Card,
   CardContent,
@@ -7,20 +6,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { createClient } from "@/utils/supabase/client";
-import { useState, useEffect } from "react";
+import { createClient } from "@/utils/supabase/server";
 import { event } from "@/app/events/models";
+import { cookies } from 'next/headers';
 
 import LocationTime from "./LocationTime";
 import EventCardSkeleton from "./EventCardSkeleton";
 
-export default function EventCard({ event_id }: { event_id: string }) {
-  const [event, setEvent] = useState<event>();
-  const [error, setError] = useState<boolean>(false);
-  const supabase = createClient();
-
-  const getData = async () => {
-    const { data } = await supabase
+export default async function EventCard({ event_id }: { event_id: string }) {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
+  const { data } = await supabase
       .from("events")
       .select(
         `
@@ -38,25 +34,16 @@ export default function EventCard({ event_id }: { event_id: string }) {
       )
       .eq("message_id", event_id);
 
-    if (!data || data.length === 0) {
-      return setError(true);
-    } else {
-      // @ts-ignore
-      setEvent(data[0] as event);
-      console.log(data[0]);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+  //@ts-ignore
+  const event = data[0] as event;
 
   const getMessageLink = (event: event) => {
     return `discord://discord.com/channels/${event.guild_id}/${event.channel_id}/${event.message_id}`;
   }
-  if (error) {
+  if (!event) {
     return <div>Event not found</div>;
   }
+
   return event ? (
     <Card>
       <CardHeader>

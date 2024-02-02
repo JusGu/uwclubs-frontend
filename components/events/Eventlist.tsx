@@ -1,20 +1,17 @@
-"use client";
 import { event } from "../../app/events/models";
-import { useRouter } from "next/navigation";
-import { createClient } from "@/utils/supabase/client";
-import { useState, useEffect } from "react";
+import { createClient } from "@/utils/supabase/server";
 import EventPreview from "./EventPreview";
 import EventPreviewSkeleton from "./EventPreviewSkeleton";
+import { cookies } from "next/headers";
 
-export default function EventList() {
-  const router = useRouter();
+export default async function EventList() {
+  const cookieStore = cookies();
+  const supabase = createClient(cookieStore);
 
-  const [loading, setLoading] = useState<boolean>(true);
-  const [events, setEvents] = useState<event[]>([]);
-  const supabase = createClient();
-
-  const getData = async () => {
-    const { data } = await supabase.from("events").select(`
+  const { data } = await supabase
+    .from("events")
+    .select(
+      `
     id,
     title,
     start_time,
@@ -25,46 +22,26 @@ export default function EventList() {
     channel_id,
     message_id,
     guilds ( short_name )
-    `).order('start_time', { ascending: true });
-
-    // will fix this later not sure why it's not working
-    // @ts-ignore
-    setEvents(data as event[]);
-  };
-
-  useEffect(() => {
-    getData();
-    setLoading(false);
-  }, []);
-
-  // Listen to inserts
-  supabase
-    .channel("events")
-    .on(
-      "postgres_changes",
-      { event: "INSERT", schema: "public", table: "events" },
-      getData
+    `
     )
-    .subscribe();
+    .order("start_time", { ascending: true });
 
-  return loading || events.length === 0 ? (
+  // @ts-ignore
+  const events = data as event[];
+
+  return events.length === 0 ? (
     <div className="grid grid-cols-1 gap-4">
       <EventPreviewSkeleton />
       <EventPreviewSkeleton />
       <EventPreviewSkeleton />
     </div>
   ) : (
-    <ul>
-      {events?.map((event) => (
-        <li key={event.id} className="mb-4">
-          <EventPreview
-            event={event}
-            onClick={() => router.push(`/events/${event.message_id}`)}
-          />
-        </li>
-      ))}
-    </ul>
+      <ul>
+        {events?.map((event) => (
+          <li key={event.id} className="mb-4">
+            <EventPreview event={event} />
+          </li>
+        ))}
+      </ul>
   );
 }
-
-
