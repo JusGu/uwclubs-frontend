@@ -14,17 +14,9 @@ export interface OpenGraphEventDetails {
   location: string;
 }
 
-
 export async function loadFontBold() {
     const fontData = await fetch(
       new URL("@/assets/fonts/Inter-Bold.ttf", import.meta.url)
-    ).then((res) => res.arrayBuffer());
-    return fontData;
-  }
-  
-export async function loadFont() {
-    const fontData = await fetch(
-      new URL("@/assets/fonts/Inter-Regular.ttf", import.meta.url)
     ).then((res) => res.arrayBuffer());
     return fontData;
   }
@@ -47,7 +39,6 @@ export async function fetchEventData(eventId: string) {
   }
   
   export async function getImageOptions(): Promise<ImageResponseOptions> {
-    const fontData = await loadFont();
     const fontDataBold = await loadFontBold();
     return {
       width: 1200,
@@ -56,11 +47,6 @@ export async function fetchEventData(eventId: string) {
         {
           name: "InterBold",
           data: fontDataBold,
-          style: "normal",
-        },
-        {
-          name: "Inter",
-          data: fontData,
           style: "normal",
         },
       ],

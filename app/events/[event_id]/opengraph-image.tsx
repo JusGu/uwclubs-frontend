@@ -30,8 +30,6 @@ export default async function Image({
     return await renderFallbackImage(options);
   }
 
-  console.log(eventDetails);
-
   return new ImageResponse(
     (
       <div
