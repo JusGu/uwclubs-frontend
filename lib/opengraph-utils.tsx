@@ -23,7 +23,7 @@ export async function loadFontBold() {
   
   export async function loadFallbackImage() {
     const fallbackImage = await fetch(
-      new URL("@/app/opengraph-image.png", import.meta.url)
+      new URL("@/app/opengraph-image.jpg", import.meta.url)
     ).then((res) => res.arrayBuffer());
     return fallbackImage;
   }
