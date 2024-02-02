@@ -1,7 +1,6 @@
 import { event } from "../../app/events/models";
 import { createClient } from "@/utils/supabase/server";
 import EventPreview from "./EventPreview";
-import EventPreviewSkeleton from "./EventPreviewSkeleton";
 import { cookies } from "next/headers";
 
 export default async function EventList() {
@@ -31,9 +30,7 @@ export default async function EventList() {
 
   return events.length === 0 ? (
     <div className="grid grid-cols-1 gap-4">
-      <EventPreviewSkeleton />
-      <EventPreviewSkeleton />
-      <EventPreviewSkeleton />
+      <h1 className="text-lg">No events this week</h1>
     </div>
   ) : (
       <ul>
