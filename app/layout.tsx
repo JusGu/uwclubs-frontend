@@ -30,12 +30,6 @@ export const metadata = {
         height: 630,
         alt: "UWClubs",
       },
-      {
-        url: `${defaultUrl}/twitter-image.png`,
-        width: 1200,
-        height: 630,
-        alt: "UWClubs",
-      },
     ],
     locale: "en_US",
     type: "website",
