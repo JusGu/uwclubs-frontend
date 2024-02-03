@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/client";
-import { format } from "date-fns";
 import { ImageResponseOptions } from "next/dist/compiled/@vercel/og/types";
+import { formatInTimeZone } from 'date-fns-tz';
 
 export const club_blue = "#265170";
 export const club_beige = "#f0ead7";
@@ -56,10 +56,13 @@ export async function fetchEventData(eventId: string) {
  export function toOpenGraphEventDetails(data: any): OpenGraphEventDetails | null {
     if (!data || data.length === 0) return null;
     const event = data[0];
-    const dateDescription = format(
+    
+    const dateDescription = formatInTimeZone(
       new Date(event.start_time),
+      'America/New_York',
       "EEE, MMM d, h:mm a"
     );
+    
     return {
       title: event.title,
       club_name: event.guilds.short_name,
