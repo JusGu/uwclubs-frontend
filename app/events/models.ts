@@ -1,4 +1,14 @@
-export interface event {
+export interface IWeeklyEvents {
+    sunday: IEvent[];
+    monday: IEvent[];
+    tuesday: IEvent[];
+    wednesday: IEvent[];
+    thursday: IEvent[];
+    friday: IEvent[];
+    saturday: IEvent[];
+}
+
+export interface IEvent {
     id: string;
     title: string;
     start_time: string;
@@ -8,19 +18,19 @@ export interface event {
     guild_id: string;
     channel_id: string;
     message_id: string;
-    guilds: Guild;
+    guilds: IGuild;
 }
 
-interface Guild {
+interface IGuild {
     short_name: string;
 }
 
-export interface PostgresChangePayload {
+export interface IPostgresChangePayload {
     schema: string;
     table: string;
     commit_timestamp: string;
     eventType: string;
-    new: event;
-    old: event;
+    new: IEvent;
+    old: IEvent;
     errors?: string;
 }

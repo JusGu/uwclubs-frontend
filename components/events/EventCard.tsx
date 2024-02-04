@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { createClient } from "@/utils/supabase/server";
-import { event } from "@/app/events/models";
+import { IEvent } from "@/app/events/models";
 import { cookies } from "next/headers";
 import LocationTime from "./LocationTime";
 
@@ -30,12 +30,13 @@ export default async function EventCard({ event_id }: { event_id: string }) {
       guilds ( short_name )
       `
     )
-    .eq("message_id", event_id);
+    .eq("message_id", event_id)
+    .is("deleted_at", null);
 
   //@ts-ignore
   const event = data[0] as event;
 
-  const getMessageLink = (event: event) => {
+  const getMessageLink = (event: IEvent) => {
     return `discord://discord.com/channels/${event.guild_id}/${event.channel_id}/${event.message_id}`;
   };
   if (!event) {

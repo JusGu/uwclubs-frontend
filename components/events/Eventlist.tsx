@@ -1,34 +1,38 @@
-import { event } from "../../app/events/models";
+import { IEvent } from "../../app/events/models";
 import { createClient } from "@/utils/supabase/server";
 import EventPreview from "./EventPreview";
 import { cookies } from "next/headers";
+import { getWeekRange } from "@/lib/getWeekRange";
 
 export default async function EventList() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
-
+  const {startOfWeek, endOfWeek} = getWeekRange(new Date());
+  
   const { data } = await supabase
     .from("events")
-    .select(
-      `
-    id,
-    title,
-    start_time,
-    end_time,
-    location,
-    description,
-    guild_id,
-    channel_id,
-    message_id,
-    guilds ( short_name )
-    `
-    )
+    .select(`
+      id,
+      title,
+      start_time,
+      end_time,
+      location,
+      description,
+      guild_id,
+      channel_id,
+      message_id,
+      guilds ( short_name )
+    `)
+    .gte('start_time', startOfWeek.toISOString())
+    .lte('start_time', endOfWeek.toISOString())
+    .is("deleted_at", null)
     .order("start_time", { ascending: true });
 
   // @ts-ignore
-  const events = data as event[];
+  const events = data as IEvent[];
+  console.log(events);
 
-  return events.length === 0 ? (
+  return !events || events.length === 0 ? (
     <div className="grid grid-cols-1 gap-4">
       <h1 className="text-lg">No events this week</h1>
     </div>

@@ -1,12 +1,12 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../ui/card";
 import LocationTime from "./LocationTime";
-import { event } from "../../app/events/models";
+import { IEvent } from "../../app/events/models";
 import Link from "next/link";
 
 export default function EventPreview({
     event,
   }: {
-    event: event;
+    event: IEvent;
   }) {
 
   return (

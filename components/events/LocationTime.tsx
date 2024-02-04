@@ -1,6 +1,6 @@
 import { Clock, MapPin } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
-import { event } from "../../app/events/models";
+import { IEvent } from "../../app/events/models";
 
 const formatTime = (time: string) => {
   const date = new Date(time);
@@ -12,7 +12,7 @@ const formatTime = (time: string) => {
   });
 };
 
-export default function LocationTime({ event }: { event: event }) {
+export default function LocationTime({ event }: { event: IEvent }) {
   return (
     <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-x-2 sm:space-y-0">
       <Alert className="w-full">
