@@ -16,16 +16,14 @@ export default function LocationTime({ event }: { event: IEvent }) {
   return (
     <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-x-2 sm:space-y-0">
       <Alert className="w-full">
-        {/* <AlertTitle>{getMonthDate(event.start_time)}</AlertTitle> */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 text-sm">
           <Clock className="h-5 w-5" />
           {formatTime(event.start_time)} - {formatTime(event.end_time)}
         </div>
       </Alert>
       {event.location && (
-        <Alert className="w-full">
-          {/* <AlertTitle>Location</AlertTitle> */}
-          <div className="flex items-center gap-3">
+        <Alert className="w-full text-lg">
+          <div className="flex items-center gap-3 text-sm">
             <MapPin className="h-5 w-5" />
             {event.location}
           </div>

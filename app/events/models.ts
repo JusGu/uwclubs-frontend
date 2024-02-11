@@ -1,11 +1,5 @@
 export interface IWeeklyEvents {
-    sunday: IEvent[];
-    monday: IEvent[];
-    tuesday: IEvent[];
-    wednesday: IEvent[];
-    thursday: IEvent[];
-    friday: IEvent[];
-    saturday: IEvent[];
+    [date: string]: IEvent[];
 }
 
 export interface IEvent {

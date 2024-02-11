@@ -2,6 +2,7 @@ import { IWeeklyEvents } from "@/app/events/models";
 import { type ClassValue, clsx } from "clsx";
 import { formatInTimeZone } from "date-fns-tz";
 import { twMerge } from "tailwind-merge";
+import { format } from "date-fns";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -15,24 +16,17 @@ export function formatDateDescription(timestampz: string): string {
   );
 }
 
-export function organizeEventsByWeekday(data: any): IWeeklyEvents {
-  const events: IWeeklyEvents = {
-    sunday: [],
-    monday: [],
-    tuesday: [],
-    wednesday: [],
-    thursday: [],
-    friday: [],
-    saturday: [],
-  };
-  if (!data){
-    return events;
-  }
+export function organizeEventsByDate(data: any): IWeeklyEvents {
+  const events: IWeeklyEvents = {};
 
   data.forEach((event: any) => {
-    const dayOfWeek = new Date(event.start_time).getDay();
-    const days: (keyof IWeeklyEvents)[] = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-    events[days[dayOfWeek]].push(event);
+    const eventDate = new Date(event.start_time);
+    eventDate.setHours(0, 0, 0, 0); // Set time to midnight
+    const dateKey = eventDate.toLocaleString("en-US", {timeZone: "America/New_York"});
+    if (!events[dateKey]) {
+      events[dateKey] = []; 
+    }
+    events[dateKey].push(event);
   });
 
   return events;
@@ -45,4 +39,3 @@ export function countTotalEvents(weeklyEvents: IWeeklyEvents): number {
   }
   return totalEvents;
 }
-

@@ -3,15 +3,15 @@ import { createClient } from "@/utils/supabase/server";
 import EventPreview from "./EventPreview";
 import { cookies } from "next/headers";
 import { getWeekRange } from "@/lib/getWeekRange";
-import { countTotalEvents, organizeEventsByWeekday } from "@/lib/utils";
+import { countTotalEvents, organizeEventsByDate } from "@/lib/utils";
 import Timeline from "./Timeline";
 import TimelineTop from "./TimelineTop";
+import FormatDate from "./FormatDate";
 
 export default async function EventList() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
   const { startOfWeek, endOfWeek } = getWeekRange(new Date());
-
   const { data } = await supabase
     .from("events")
     .select(
@@ -33,9 +33,8 @@ export default async function EventList() {
     .is("deleted_at", null)
     .order("start_time", { ascending: true });
 
-  const weeklyEvents = organizeEventsByWeekday(data);
+  const weeklyEvents = organizeEventsByDate(data);
   const totalWeeklyEventsCount = countTotalEvents(weeklyEvents);
-  console.log(weeklyEvents, totalWeeklyEventsCount);
 
   return !weeklyEvents || totalWeeklyEventsCount === 0 ? (
     <div className="grid grid-cols-1 gap-4">
@@ -43,12 +42,15 @@ export default async function EventList() {
     </div>
   ) : (
     <div>
-      {Object.entries(weeklyEvents).map(([day, events]) => (
-        <div key={day} className="flex w-full justify-items-stretch">
-          {day === "saturday" ? <Timeline /> : <TimelineTop />}
+      <h2 className="mb-4 text-md">
+        {totalWeeklyEventsCount} events this week
+      </h2>
+      {Object.entries(weeklyEvents).map(([date, events], index, array) => (
+        <div key={date} className="flex w-full justify-items-stretch">
+          {index === array.length - 1 ? <Timeline /> : <TimelineTop />}
           <div className="w-full">
-            <h2 className="text-2xl font-bold mb-4">
-              {day.charAt(0).toUpperCase() + day.slice(1)}
+            <h2 className="text-xl font-bold mb-4">
+              <FormatDate dateString={date} />
             </h2>
             <ul>
               {events.map((event: IEvent) => (
