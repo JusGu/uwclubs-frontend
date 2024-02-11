@@ -1,5 +1,8 @@
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
+import Script from "next/script";
+import { isProd } from "@/lib/env";
+
 
 function getDefaultUrl() {
   if (process.env.VERCEL_URL) {
@@ -46,6 +49,19 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="favicon.ico" />
       </head>
+      {isProd() && (
+        <>
+          <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-02CVJFYJG2" />
+          <Script strategy="afterInteractive" id="google-analytics">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-02CVJFYJG2');
+            `}
+          </Script>
+        </>
+      )}
 
       <body>
         <main className="min-h-screen flex flex-col items-center">
