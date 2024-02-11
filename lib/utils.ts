@@ -16,13 +16,18 @@ export function formatDateDescription(timestampz: string): string {
   );
 }
 
+export const getDateKey = (date: Date): string => {
+  const eventDate = new Date(date);
+  eventDate.setHours(0, 0, 0, 0); // Set time to midnight
+  const dateKey = eventDate.toLocaleString("en-US", {timeZone: "America/New_York"});
+  return dateKey;
+}
+
 export function organizeEventsByDate(data: any): IWeeklyEvents {
   const events: IWeeklyEvents = {};
 
   data.forEach((event: any) => {
-    const eventDate = new Date(event.start_time);
-    eventDate.setHours(0, 0, 0, 0); // Set time to midnight
-    const dateKey = eventDate.toLocaleString("en-US", {timeZone: "America/New_York"});
+    const dateKey = getDateKey(new Date(event.start_time));
     if (!events[dateKey]) {
       events[dateKey] = []; 
     }

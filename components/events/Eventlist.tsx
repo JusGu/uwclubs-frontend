@@ -1,17 +1,23 @@
-import { IEvent } from "../../app/events/models";
+import { EventListSearchParams, IEvent } from "@/app/events/models";
 import { createClient } from "@/utils/supabase/server";
 import EventPreview from "./EventPreview";
 import { cookies } from "next/headers";
-import { getWeekRange } from "@/lib/getWeekRange";
 import { countTotalEvents, organizeEventsByDate } from "@/lib/utils";
 import Timeline from "./Timeline";
 import TimelineTop from "./TimelineTop";
 import FormatDate from "./FormatDate";
+import EventListNav from "./EventListNav";
+import PaginationButton from "./PaginationButton";
+import { getStartAndEndOfWeek, getWeekDescriptor } from "@/lib/pagination";
+import EventListFooterNav from "./EventListFooterNav";
 
-export default async function EventList() {
+interface IEventList {
+  searchParams: EventListSearchParams;
+}
+export default async function EventList(props: IEventList) {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
-  const { startOfWeek, endOfWeek } = getWeekRange(new Date());
+  const { startOfWeek, endOfWeek } = getStartAndEndOfWeek(props.searchParams);
   const { data } = await supabase
     .from("events")
     .select(
@@ -38,20 +44,29 @@ export default async function EventList() {
 
   return !weeklyEvents || totalWeeklyEventsCount === 0 ? (
     <div className="grid grid-cols-1 gap-4">
-      <h1 className="text-lg">No events this week</h1>
+      <h1 className="text-lg">
+        {getWeekDescriptor(startOfWeek, totalWeeklyEventsCount)}.
+      </h1>
+      <EventListFooterNav start={startOfWeek} end={endOfWeek} />
     </div>
   ) : (
     <div>
-      <h2 className="mb-4 text-md">
-        {totalWeeklyEventsCount} events this week
-      </h2>
+      <EventListNav
+        startOfWeek={startOfWeek}
+        totalWeeklyEventsCount={totalWeeklyEventsCount}
+      />
       {Object.entries(weeklyEvents).map(([date, events], index, array) => (
         <div key={date} className="flex w-full justify-items-stretch">
           {index === array.length - 1 ? <Timeline /> : <TimelineTop />}
           <div className="w-full">
-            <h2 className="text-xl font-bold mb-4">
-              <FormatDate dateString={date} />
-            </h2>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">
+                <FormatDate dateString={date} />
+              </h2>
+              {index === 0 && (
+                <PaginationButton start={startOfWeek} end={endOfWeek} />
+              )}
+            </div>
             <ul>
               {events.map((event: IEvent) => (
                 <li key={event.id} className="mb-4">
@@ -62,6 +77,7 @@ export default async function EventList() {
           </div>
         </div>
       ))}
+      <EventListFooterNav start={startOfWeek} end={endOfWeek} />
     </div>
   );
 }

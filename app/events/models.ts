@@ -28,3 +28,8 @@ export interface IPostgresChangePayload {
     old: IEvent;
     errors?: string;
 }
+
+export interface EventListSearchParams {
+    start?: string;
+    end?: string;
+}
