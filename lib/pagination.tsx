@@ -30,6 +30,8 @@ export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
   const endParam = searchParams.end;
 
   if (startParam && endParam) {
+    console.log(startOfDayESTQueryParam(startParam), "STARTPARAM");
+    console.log(endOfDayESTQueryParam(endParam)), "ENDPARAM";
     return {
       startOfWeek: startOfDayESTQueryParam(startParam),
       endOfWeek: endOfDayESTQueryParam(endParam),
