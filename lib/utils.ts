@@ -3,6 +3,7 @@ import { type ClassValue, clsx } from "clsx";
 import { formatInTimeZone } from "date-fns-tz";
 import { twMerge } from "tailwind-merge";
 import { format } from "date-fns";
+import { formatDateEST } from "@/lib/time";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -16,18 +17,13 @@ export function formatDateDescription(timestampz: string): string {
   );
 }
 
-export const getDateKey = (date: Date): string => {
-  const eventDate = new Date(date);
-  eventDate.setHours(0, 0, 0, 0); // Set time to midnight
-  const dateKey = eventDate.toLocaleString("en-US", {timeZone: "America/New_York"});
-  return dateKey;
-}
-
 export function organizeEventsByDate(data: any): IWeeklyEvents {
   const events: IWeeklyEvents = {};
 
   data.forEach((event: any) => {
-    const dateKey = getDateKey(new Date(event.start_time));
+    const midnight = new Date(event.start_time)
+    midnight.setHours(0, 0, 0, 0);
+    const dateKey = formatDateEST(midnight);
     if (!events[dateKey]) {
       events[dateKey] = []; 
     }

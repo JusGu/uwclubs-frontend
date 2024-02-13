@@ -12,6 +12,8 @@ export const startOfDayESTQueryParam = (dateString: string): Date => {
   console.log("startOfDayESTQueryParam called with dateString:", dateString);
   const date = new Date(dateString + "T00:00:00");
   console.log("Start of day date:", date);
+  const secondsSinceEpoch = Math.floor(date.getTime() / 1000);
+  console.log("Seconds since epoch:", secondsSinceEpoch);
   const formattedDate = new Date(
     formatInTimeZone(date, "America/New_York", "yyyy-MM-dd'T'00:00:00XXX")
   );

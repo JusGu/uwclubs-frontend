@@ -1,16 +1,7 @@
 import { Clock, MapPin } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
 import { IEvent } from "../../app/events/models";
-
-const formatTime = (time: string) => {
-  const date = new Date(time);
-  return date.toLocaleTimeString("en-US", {
-    timeZone: "EST",
-    hour12: true,
-    hour: "numeric",
-    minute: "numeric",
-  });
-};
+import { formatTime } from "@/lib/time";
 
 export default function LocationTime({ event }: { event: IEvent }) {
   return (
