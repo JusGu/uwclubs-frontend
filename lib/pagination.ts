@@ -1,31 +1,22 @@
 import { format } from "date-fns";
-import { formatInTimeZone } from "date-fns-tz";
 import { getWeekRange } from "./getWeekRange";
 import { EventListSearchParams } from "@/app/events/models";
 import { differenceInCalendarWeeks, startOfWeek } from "date-fns";
+import { zonedTimeToUtc } from 'date-fns-tz'
 
 export const toQueryParams = (date: Date): string => {
   return format(date, "yyyy-MM-dd");
 };
 
 export const startOfDayESTQueryParam = (dateString: string): Date => {
-  console.log("Received dateString for startOfDayESTQueryParam:", dateString);
-  const [year, month, day] = dateString.split("-").map(Number);
-  console.log("Parsed year, month, day:", year, month, day);
-  const date = new Date(Date.UTC(year, month - 1, day+1));
-  console.log("Constructed Date object:", date);
-  const formattedDate = new Date(
-    formatInTimeZone(date, "America/New_York", "yyyy-MM-dd'T'00:00:00XXX")
-  );
-  console.log("Formatted start of day EST date:", formattedDate);
-  return formattedDate;
+  const utcTime = zonedTimeToUtc(dateString, "America/New_York");
+  return utcTime;
 };
 
 export const endOfDayESTQueryParam = (dateString: string): Date => {
-  const date = new Date(dateString + "T23:59:59");
-  return new Date(
-    formatInTimeZone(date, "America/New_York", "yyyy-MM-dd'T'23:59:59XXX")
-  );
+  const endOfDay = dateString + "T23:59:59.999Z";
+  const utcTime = zonedTimeToUtc(endOfDay, "America/New_York");
+  return utcTime;
 };
 
 export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
@@ -36,8 +27,6 @@ export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
   const endParam = searchParams.end;
 
   if (startParam && endParam) {
-    console.log(startOfDayESTQueryParam(startParam), "STARTPARAM");
-    console.log(endOfDayESTQueryParam(endParam), "ENDPARAM");
     return {
       startOfWeek: startOfDayESTQueryParam(startParam),
       endOfWeek: endOfDayESTQueryParam(endParam),
@@ -52,15 +41,10 @@ export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
 }
 
 export const getNavigationLink = (relativeDate: Date) => {
-  console.log("getNavigationLink called with date:", relativeDate);
   const { startOfWeek, endOfWeek } = getWeekRange(relativeDate);
-  console.log("Week range obtained:", startOfWeek, endOfWeek);
   const start = toQueryParams(startOfWeek);
-  console.log("Formatted start of week:", start);
   const end = toQueryParams(endOfWeek);
-  console.log("Formatted end of week:", end);
   const navigationLink = `/events?start=${start}&end=${end}`;
-  console.log("Generated navigation link:", navigationLink);
   return navigationLink;
 };
 

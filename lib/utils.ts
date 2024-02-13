@@ -2,8 +2,8 @@ import { IWeeklyEvents } from "@/app/events/models";
 import { type ClassValue, clsx } from "clsx";
 import { formatInTimeZone } from "date-fns-tz";
 import { twMerge } from "tailwind-merge";
-import { format } from "date-fns";
 import { formatDateEST } from "@/lib/time";
+import {utcToZonedTime} from 'date-fns-tz'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -21,9 +21,13 @@ export function organizeEventsByDate(data: any): IWeeklyEvents {
   const events: IWeeklyEvents = {};
 
   data.forEach((event: any) => {
-    console.log(event.start_time, "event start time\n\n\nASDSADAS\n\n\n")
-    const midnight = new Date(event.start_time)
-    const dateKey = formatDateEST(midnight);
+    const date = new Date(event.start_time);
+    const dateKey = date.toLocaleTimeString("en-US", {
+      timeZone: "EST",
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    });
     if (!events[dateKey]) {
       events[dateKey] = []; 
     }
