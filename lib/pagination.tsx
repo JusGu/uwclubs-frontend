@@ -9,10 +9,13 @@ export const toQueryParams = (date: Date): string => {
 };
 
 export const startOfDayESTQueryParam = (dateString: string): Date => {
+  console.log("startOfDayESTQueryParam called with dateString:", dateString);
   const date = new Date(dateString + "T00:00:00");
-  return new Date(
+  const formattedDate = new Date(
     formatInTimeZone(date, "America/New_York", "yyyy-MM-dd'T'00:00:00XXX")
   );
+  console.log("Formatted start of day EST date:", formattedDate);
+  return formattedDate;
 };
 
 export const endOfDayESTQueryParam = (dateString: string): Date => {
@@ -31,7 +34,7 @@ export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
 
   if (startParam && endParam) {
     console.log(startOfDayESTQueryParam(startParam), "STARTPARAM");
-    console.log(endOfDayESTQueryParam(endParam)), "ENDPARAM";
+    console.log(endOfDayESTQueryParam(endParam), "ENDPARAM");
     return {
       startOfWeek: startOfDayESTQueryParam(startParam),
       endOfWeek: endOfDayESTQueryParam(endParam),
