@@ -21,8 +21,8 @@ export function organizeEventsByDate(data: any): IWeeklyEvents {
   const events: IWeeklyEvents = {};
 
   data.forEach((event: any) => {
+    console.log(event.start_time, "event start time\n\n\nASDSADAS\n\n\n")
     const midnight = new Date(event.start_time)
-    midnight.setHours(0, 0, 0, 0);
     const dateKey = formatDateEST(midnight);
     if (!events[dateKey]) {
       events[dateKey] = []; 
