@@ -44,10 +44,16 @@ export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
 }
 
 export const getNavigationLink = (relativeDate: Date) => {
+  console.log("getNavigationLink called with date:", relativeDate);
   const { startOfWeek, endOfWeek } = getWeekRange(relativeDate);
+  console.log("Week range obtained:", startOfWeek, endOfWeek);
   const start = toQueryParams(startOfWeek);
+  console.log("Formatted start of week:", start);
   const end = toQueryParams(endOfWeek);
-  return `/events?start=${start}&end=${end}`;
+  console.log("Formatted end of week:", end);
+  const navigationLink = `/events?start=${start}&end=${end}`;
+  console.log("Generated navigation link:", navigationLink);
+  return navigationLink;
 };
 
 export const weeksAwayFromCurrent = (inputDate: Date): number => {
