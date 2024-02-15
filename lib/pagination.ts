@@ -1,25 +1,22 @@
 import { format } from "date-fns";
-import { formatInTimeZone } from "date-fns-tz";
 import { getWeekRange } from "./getWeekRange";
 import { EventListSearchParams } from "@/app/events/models";
 import { differenceInCalendarWeeks, startOfWeek } from "date-fns";
+import { zonedTimeToUtc } from 'date-fns-tz'
 
 export const toQueryParams = (date: Date): string => {
   return format(date, "yyyy-MM-dd");
 };
 
 export const startOfDayESTQueryParam = (dateString: string): Date => {
-  const date = new Date(dateString + "T00:00:00");
-  return new Date(
-    formatInTimeZone(date, "America/New_York", "yyyy-MM-dd'T'00:00:00XXX")
-  );
+  const utcTime = zonedTimeToUtc(dateString, "America/New_York");
+  return utcTime;
 };
 
 export const endOfDayESTQueryParam = (dateString: string): Date => {
-  const date = new Date(dateString + "T23:59:59");
-  return new Date(
-    formatInTimeZone(date, "America/New_York", "yyyy-MM-dd'T'23:59:59XXX")
-  );
+  const endOfDay = dateString + "T23:59:59.999Z";
+  const utcTime = zonedTimeToUtc(endOfDay, "America/New_York");
+  return utcTime;
 };
 
 export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
@@ -47,7 +44,8 @@ export const getNavigationLink = (relativeDate: Date) => {
   const { startOfWeek, endOfWeek } = getWeekRange(relativeDate);
   const start = toQueryParams(startOfWeek);
   const end = toQueryParams(endOfWeek);
-  return `/events?start=${start}&end=${end}`;
+  const navigationLink = `/events?start=${start}&end=${end}`;
+  return navigationLink;
 };
 
 export const weeksAwayFromCurrent = (inputDate: Date): number => {

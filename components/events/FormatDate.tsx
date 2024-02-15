@@ -1,4 +1,4 @@
-import { formatInTimeZone } from "date-fns-tz";
+import { formatInTimeZone, zonedTimeToUtc } from "date-fns-tz";
 import { isToday, isTomorrow } from "date-fns";
 
 interface IFormatDateProps {
@@ -8,11 +8,10 @@ interface IFormatDateProps {
 
 export default function FormatDate(props: IFormatDateProps) {
   const { dateString, timezone = "EST" } = props;
-  const date = new Date(dateString);
+  const date = zonedTimeToUtc(dateString, "America/New_York");
 
   const dayOfWeek = formatInTimeZone(date, timezone, "EEEEEEEEE");
   const monthAndDay = formatInTimeZone(date, timezone, "MMM d");
-  const fullDate = formatInTimeZone(date, timezone, "MMM d, EEE");
 
   const getPrimaryLabel = (date: Date) => {
     if (isToday(date)) {
