@@ -32,6 +32,7 @@ export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
       endOfWeek: endOfDayESTQueryParam(endParam),
     };
   } else {
+    console.log(new Date(), "CURRENT DATE");
     const weekRange = getWeekRange(new Date());
     return {
       startOfWeek: weekRange.startOfWeek,

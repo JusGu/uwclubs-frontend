@@ -21,9 +21,7 @@ export function organizeEventsByDate(data: any): IWeeklyEvents {
   const events: IWeeklyEvents = {};
 
   data.forEach((event: any) => {
-    console.log(event.start_time, event.title, "Event");
     const dateKey = formatInTimeZone(event.start_time, "America/New_York", "yyyy-MM-dd");
-    console.log(dateKey, event.title, "Date Key");
     if (!events[dateKey]) {
       events[dateKey] = []; 
     }
