@@ -21,11 +21,11 @@ export function organizeEventsByDate(data: any): IWeeklyEvents {
   const events: IWeeklyEvents = {};
 
   data.forEach((event: any) => {
-    console.log(event.start_time, "Event Start Time");
+    console.log(event.start_time, event.title, "Event");
     const date = zonedTimeToUtc(event.start_time, "America/New_York");
-    console.log(date, "Date");
+    console.log(date, event.title, "Date");
     const dateKey = formatInTimeZone(date, "America/New_York", "yyyy-MM-dd");
-    console.log(dateKey, "Date Key");
+    console.log(dateKey, event.title, "Date Key");
     if (!events[dateKey]) {
       events[dateKey] = []; 
     }
