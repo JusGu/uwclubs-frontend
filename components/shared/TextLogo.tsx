@@ -1,16 +1,16 @@
-"use client"
+"use client";
 import { Lora } from "next/font/google";
 import Rive from "@rive-app/react-canvas";
 
 const lora = Lora({ subsets: ["latin"] });
 
-export default function EventPageTitle() {
+export default function TextLogo() {
   return (
     <div className="flex gap-2 items-center">
-      <h1 className={`text-4xl font-bold ${lora.className}`}>Events</h1>
-      <div className="w-14 h-14">
-      <Rive src="/mantis.riv" />
+      <div className="w-12 h-12">
+        <Rive src="/mantis.riv" />
       </div>
+      <h1 className={`text-2xl font-bold text-foreground ${lora.className}`}>UWClubs</h1>
     </div>
   );
 }
