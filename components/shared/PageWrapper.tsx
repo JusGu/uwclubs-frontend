@@ -7,8 +7,8 @@ interface PageWrapperProps {
 
 const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   return (
-    <div className="w-full sm:w-1/2 mx-auto sm:max-w-2xl">
-      <div className="pt-6 pb-4">
+    <div className="w-full sm:w-1/2 mx-auto p-6 sm:max-w-2xl">
+      <div className="pb-4">
         <TextLogo />
       </div>
       {children}
