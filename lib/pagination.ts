@@ -14,8 +14,9 @@ export const startOfDayESTQueryParam = (dateString: string): Date => {
 };
 
 export const endOfDayESTQueryParam = (dateString: string): Date => {
-  const endOfDay = dateString + "T23:59:59.999Z";
-  const utcTime = zonedTimeToUtc(endOfDay, "America/New_York");
+  const utcTime = zonedTimeToUtc(dateString, "America/New_York");
+  utcTime.setUTCDate(utcTime.getUTCDate() + 1);
+  utcTime.setUTCHours(4, 59, 59, 999);
   return utcTime;
 };
 
@@ -32,7 +33,6 @@ export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
       endOfWeek: endOfDayESTQueryParam(endParam),
     };
   } else {
-    console.log(new Date(), "CURRENT DATE");
     const weekRange = getWeekRange(new Date());
     return {
       startOfWeek: weekRange.startOfWeek,

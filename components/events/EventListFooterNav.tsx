@@ -11,10 +11,10 @@ interface IEventListFooterNavProps {
 export default function EventListFooterNav(props: IEventListFooterNavProps) {
   const { start, end } = props;
   const nextWeek = new Date(start);
-  nextWeek.setDate(nextWeek.getDate() + 7);
+  nextWeek.setUTCDate(nextWeek.getUTCDate() + 7);
   const nextWeekLink = getNavigationLink(nextWeek);
   const prevWeek = new Date(start);
-  prevWeek.setDate(prevWeek.getDate() - 7);
+  prevWeek.setUTCDate(prevWeek.getUTCDate() - 7);
   const prevWeekLink = getNavigationLink(prevWeek);
   return (
     <div className="flex justify-between items-center mt-4">
@@ -26,7 +26,6 @@ export default function EventListFooterNav(props: IEventListFooterNavProps) {
       </Link>
       <Link href={nextWeekLink} passHref>
         <Button variant="outline" className="flex gap-2 p-6 pr-4">
-
             Next Week
           <ChevronRight className="h-4 w-4" />
         </Button>
