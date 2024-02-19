@@ -8,7 +8,7 @@ interface IPage {
 
 export default function Page({ searchParams }: IPage) {
   return (
-    <div className="w-full sm:w-1/2 py-6 mx-auto sm:max-w-2xl">
+    <div className="w-full sm:w-1/2 p-6 mx-auto sm:max-w-2xl">
       <PageTitle title="Events" logo />
       <EventList searchParams={searchParams} />
     </div>
