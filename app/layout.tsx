@@ -1,21 +1,10 @@
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Script from "next/script";
-import { isProd } from "@/lib/env";
+import { getURL, isProd } from "@/lib/env";
 
 
-function getDefaultUrl() {
-  if (process.env.VERCEL_URL) {
-    if (process.env.PUBLIC_ENV === "staging") {
-      return "https://staging.uwclubs.com/";
-    } else if (process.env.PUBLIC_ENV === "prod") {
-      return `https://uwclubs.com`;
-    }
-  }
-  return "http://localhost:3000";
-}
-
-const defaultUrl = getDefaultUrl();
+const defaultUrl = getURL();
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
