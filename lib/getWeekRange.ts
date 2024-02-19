@@ -1,16 +1,12 @@
 export function getWeekRange(date: Date) {
-  console.log(`Input date: ${date.toISOString()}`);
   const dayOfWeek = date.getDay();
-  console.log(`Day of week: ${dayOfWeek}`);
   const startOfWeek = new Date(date);
   startOfWeek.setDate(date.getDate() - dayOfWeek);
-  startOfWeek.setHours(0, 0, 0, 0); // Start of the day
-  console.log(`Start of week: ${startOfWeek.toISOString()}`);
+  startOfWeek.setUTCHours(5, 0, 0, 0); // UTC 5am is EST 12am
 
   const endOfWeek = new Date(startOfWeek);
-  endOfWeek.setDate(startOfWeek.getDate() + 6);
-  endOfWeek.setHours(23, 59, 59, 999); // End of the day
-  console.log(`End of week: ${endOfWeek.toISOString()}`);
+  endOfWeek.setDate(startOfWeek.getDate() + 7);
+  endOfWeek.setUTCHours(4, 59, 59, 999); // UTC 4:59:59.999 is EST 11:59:59.999
 
   return { startOfWeek, endOfWeek };
 }
