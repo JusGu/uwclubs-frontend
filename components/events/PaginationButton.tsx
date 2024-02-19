@@ -13,10 +13,10 @@ export default function PaginationButton({
   end,
 }: IPaginationButtonProps) {
   const nextWeek = new Date(start);
-  nextWeek.setDate(nextWeek.getDate() + 7);
+  nextWeek.setUTCDate(nextWeek.getUTCDate() + 7);
   const nextWeekLink = getNavigationLink(nextWeek);
   const prevWeek = new Date(start);
-  prevWeek.setDate(prevWeek.getDate() - 7);
+  prevWeek.setUTCDate(prevWeek.getUTCDate() - 7);
   const prevWeekLink = getNavigationLink(prevWeek);
 
   return (

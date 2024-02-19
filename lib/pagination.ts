@@ -1,11 +1,11 @@
-import { format } from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
 import { getWeekRange } from "./getWeekRange";
 import { EventListSearchParams } from "@/app/events/models";
 import { differenceInCalendarWeeks, startOfWeek } from "date-fns";
 import { zonedTimeToUtc } from 'date-fns-tz'
 
 export const toQueryParams = (date: Date): string => {
-  return format(date, "yyyy-MM-dd");
+  return formatInTimeZone(date, "America/New_York", "yyyy-MM-dd");
 };
 
 export const startOfDayESTQueryParam = (dateString: string): Date => {
@@ -14,8 +14,9 @@ export const startOfDayESTQueryParam = (dateString: string): Date => {
 };
 
 export const endOfDayESTQueryParam = (dateString: string): Date => {
-  const endOfDay = dateString + "T23:59:59.999Z";
-  const utcTime = zonedTimeToUtc(endOfDay, "America/New_York");
+  const utcTime = zonedTimeToUtc(dateString, "America/New_York");
+  utcTime.setUTCDate(utcTime.getUTCDate() + 1);
+  utcTime.setUTCHours(4, 59, 59, 999);
   return utcTime;
 };
 
