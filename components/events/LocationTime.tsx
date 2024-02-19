@@ -3,13 +3,20 @@ import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
 import { IEvent } from "../../app/events/models";
 import { formatTime } from "@/lib/time";
 
+function renderTime(start_time: string, end_time: string) {
+  if (!end_time) {
+    return formatTime(start_time);
+  }
+  return `${formatTime(start_time)} - ${formatTime(end_time)}`;
+}
+
 export default function LocationTime({ event }: { event: IEvent }) {
   return (
     <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-x-2 sm:space-y-0">
       <Alert className="w-full">
         <div className="flex items-center gap-3 text-sm">
           <Clock className="h-5 w-5" />
-          {formatTime(event.start_time)} - {formatTime(event.end_time)}
+          {renderTime(event.start_time, event.end_time)}
         </div>
       </Alert>
       {event.location && (
