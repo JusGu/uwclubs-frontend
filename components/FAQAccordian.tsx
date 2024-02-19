@@ -6,7 +6,7 @@ export default function FAQAccordion() {
     <Accordion type="single" collapsible className="text-foreground">
       {faq.map((item, index) => (
         <AccordionItem key={index} value={`item-${index}`}>
-          <AccordionTrigger>{item.question}</AccordionTrigger>
+          <AccordionTrigger className="text-left">{item.question}</AccordionTrigger>
           <AccordionContent>{item.answer}</AccordionContent>
         </AccordionItem>
       ))}
