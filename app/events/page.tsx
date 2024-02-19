@@ -1,7 +1,6 @@
 import EventList from "../../components/events/Eventlist";
 import PageTitle from "@/components/shared/PageTitle";
 import { EventListSearchParams } from "./models";
-import PageWrapper from "@/components/shared/PageWrapper";
 
 interface IPage {
   searchParams: EventListSearchParams;

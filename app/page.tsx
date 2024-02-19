@@ -1,4 +1,4 @@
-import AnimatedLogo from "@/components/AnimatedLogo";
+import AnimatedLogo from "@/components/shared/AnimatedLogo";
 import HelpButton from "@/components/HelpButton";
 import Hero from "@/components/Hero";
 import { Button } from "@/components/ui/button";
@@ -21,21 +21,13 @@ export default async function Index() {
         </div>
         <div className="animate-fade-in mt-4 flex flex-col items-center gap-2">
           <Link href="/events">
-            <Button
-              variant="secondary"
-              size="lg"
-              className="text-2xl py-6"
-            >
+            <Button variant="secondary" size="lg" className="text-2xl py-6">
               View Events
             </Button>
           </Link>
           <Link href="/faq">
-            <Button
-              variant="default"
-              size="lg"
-              className="hover:underline"
-            >
-              Join UWClubs
+            <Button variant="default" size="lg" className="hover:underline">
+              Join as a Club
             </Button>
           </Link>
         </div>
