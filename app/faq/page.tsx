@@ -1,22 +1,25 @@
 import FAQAccordion from "@/components/FAQAccordian";
+import Hero, { IHeroProps } from "@/components/shared/Hero";
 import PageTitle from "@/components/shared/PageTitle";
 import PageWrapper from "@/components/shared/PageWrapper";
-import TextLogo from "@/components/shared/TextLogo";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ChevronRight, Search } from "lucide-react";
 import Link from "next/link";
 
 export default function Page() {
+  const heroProps: IHeroProps = {
+    title: "Frequently Asked Questions",
+    src: "/faq/hero.png",
+    alt: "Find answers to common questions about UWClubs",
+  };
   return (
     <PageWrapper>
-      <Link href="/">Home</Link>
-      <ChevronRight size={20} className="inline-block" />
-      <Link href="/faq">FAQ</Link>
-      <div className="py-2">
-        <PageTitle title="Frequently Asked Questions" />
+      <Hero {...heroProps} />
+      <div className="w-full sm:w-1/2 mx-auto p-6">
+        <Link href="/">Home</Link>
+        <ChevronRight size={20} className="inline-block" />
+        <Link href="/faq">FAQ</Link>
+        <FAQAccordion />
       </div>
-      <FAQAccordion />
     </PageWrapper>
   );
 }
