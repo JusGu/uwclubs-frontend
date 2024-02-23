@@ -25,7 +25,7 @@ export default async function Index() {
               View Events
             </Button>
           </Link>
-          <Link href="/faq">
+          <Link href="/learn/join">
             <Button variant="default" size="lg" className="hover:underline">
               Join as a Club
             </Button>
