@@ -10,6 +10,7 @@ import { createClient } from "@/utils/supabase/server";
 import { IEvent } from "@/app/events/models";
 import { cookies } from "next/headers";
 import LocationTime from "./LocationTime";
+import DotsLoader from "./DotsLoader";
 
 export default async function EventCard({ event_id }: { event_id: string }) {
   const cookieStore = cookies();
@@ -46,7 +47,10 @@ export default async function EventCard({ event_id }: { event_id: string }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{event.title}</CardTitle>
+      <CardTitle className="flex align-items justify-between">
+            {event.title}
+            <DotsLoader startTime={event.start_time} endTime={event.end_time} />
+          </CardTitle>
         <CardDescription>@{event.guilds.short_name}</CardDescription>
       </CardHeader>
       <CardContent>

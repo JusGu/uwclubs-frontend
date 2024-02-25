@@ -27,7 +27,7 @@ export default function DotsLoader({ startTime, endTime }: IDotsLoaderProps) {
   if (!isActive) return null; // Don't render if not active
 
   return (
-    <div className="flex space-x-2 justify-center items-center dark:invert">
+    <div className="flex space-x-2 justify-center items-center dark:invert" title="Currently Happening">
       <span className="sr-only">Currently Happening</span>
       <div className={`h-${size} w-${size} bg-primary rounded-full animate-bounce [animation-delay:-0.3s]`}></div>
       <div className={`h-${size} w-${size} bg-primary rounded-full animate-bounce [animation-delay:-0.15s]`}></div>

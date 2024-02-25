@@ -1,6 +1,8 @@
 import EventList from "../../components/events/Eventlist";
 import PageTitle from "@/components/shared/PageTitle";
 import { EventListSearchParams } from "./models";
+import { Input } from "@/components/ui/input";
+import SearchPageWrapper from "@/components/events/SearchPageWrapper";
 
 interface IPage {
   searchParams: EventListSearchParams;
@@ -8,9 +10,10 @@ interface IPage {
 
 export default function Page({ searchParams }: IPage) {
   return (
-    <div className="w-full sm:w-1/2 p-6 mx-auto sm:max-w-2xl">
-      <PageTitle title="Events" logo />
+    <SearchPageWrapper>
+      <div className="w-full sm:w-1/2 mx-auto px-6 sm:max-w-2xl">
       <EventList searchParams={searchParams} />
-    </div>
+      </div>
+    </SearchPageWrapper>
   );
 }

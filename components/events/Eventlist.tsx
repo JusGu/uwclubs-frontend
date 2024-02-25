@@ -44,7 +44,7 @@ export default async function EventList(props: IEventList) {
 
   return !weeklyEvents || totalWeeklyEventsCount === 0 ? (
     <div className="grid grid-cols-1 gap-4">
-      <h1 className="text-lg">
+      <h1 className="text-lg mt-4">
         {getWeekDescriptor(startOfWeek, totalWeeklyEventsCount)}.
       </h1>
       <EventListFooterNav start={startOfWeek} end={endOfWeek} />
@@ -54,6 +54,8 @@ export default async function EventList(props: IEventList) {
       <EventListNav
         startOfWeek={startOfWeek}
         totalWeeklyEventsCount={totalWeeklyEventsCount}
+        isSortSelected={false}
+        isFilterSelected={false}
       />
       {Object.entries(weeklyEvents).map(([date, events], index, array) => (
         <div key={date} className="flex w-full justify-items-stretch">

@@ -72,19 +72,19 @@ export const getWeekDescriptor = (
 
     switch (weeksAway) {
         case -1:
-            weekLabel = 'took place last week';
+            weekLabel = 'last week';
             break;
         case 0:
-            weekLabel = 'occurring this week';
+            weekLabel = 'this week';
             break;
         case 1:
-            weekLabel = 'scheduled for next week';
+            weekLabel = 'next week';
             break;
         default:
             if(weeksAway < 0)
-                weekLabel = `took place ${Math.abs(weeksAway)} weeks ago`;
+                weekLabel = `${Math.abs(weeksAway)} weeks ago`;
             else 
-                weekLabel = `are currently scheduled for ${weeksAway} weeks from now`;
+                weekLabel = `${weeksAway} weeks from now`;
             break;
     }
     
