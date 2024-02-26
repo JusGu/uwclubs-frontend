@@ -36,33 +36,32 @@ export default function RootLayout({
     <html lang="en" className={GeistSans.className}>
       <head>
         <link rel="icon" href="favicon.ico" />
-      </head>
-      {isProd() && (
-        <>
-          <Script
-            strategy="afterInteractive"
-            src="https://www.googletagmanager.com/gtag/js?id=G-02CVJFYJG2"
-          />
-          <Script strategy="afterInteractive" id="google-analytics">
-            {`
+        {isProd() && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src="https://www.googletagmanager.com/gtag/js?id=G-02CVJFYJG2"
+            />
+            <Script strategy="afterInteractive" id="google-analytics">
+              {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-02CVJFYJG2');
             `}
-          </Script>
-          <Script type="text/javascript">
-            {`
+            </Script>
+            <Script type="text/javascript">
+              {`
               (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
             })(window, document, "clarity", "script", "l7bra27awx");
               `}
-          </Script>
-        </>
-      )}
-
+            </Script>
+          </>
+        )}
+      </head>
       <body>
         <main className="min-h-screen flex flex-col items-center">
           {children}
