@@ -38,7 +38,7 @@ export default function RootLayout({
         <link rel="icon" href="favicon.ico" />
         {isProd() && (
           <>
-            <Script strategy="afterInteractive" src="/clarity.js" />
+            <Script strategy="afterInteractive" src="clarity.js" />
             <Script
               strategy="afterInteractive"
               src="https://www.googletagmanager.com/gtag/js?id=G-02CVJFYJG2"
