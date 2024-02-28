@@ -4,6 +4,7 @@ import Script from "next/script";
 import { getURL, isProd } from "@/lib/env";
 
 const defaultUrl = getURL();
+const CLARITY_KEY = "l7bra27awx";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
@@ -38,7 +39,18 @@ export default function RootLayout({
         <link rel="icon" href="favicon.ico" />
         {isProd() && (
           <>
-            <Script strategy="afterInteractive" src="clarity.js" />
+            <Script
+              id="ms_clarity"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", '${CLARITY_KEY}');`,
+              }}
+            />
             <Script
               strategy="afterInteractive"
               src="https://www.googletagmanager.com/gtag/js?id=G-02CVJFYJG2"
