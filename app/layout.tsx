@@ -39,7 +39,7 @@ export default function RootLayout({
         <link rel="icon" href="favicon.ico" />
         {isProd() && (
           <>
-            <Script
+            {/* <Script
               strategy="afterInteractive"
               dangerouslySetInnerHTML={{
                 __html: `
@@ -49,8 +49,7 @@ export default function RootLayout({
                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-N7WRVC5T');`,
               }}
-            />
-
+            /> */}
             <Script
               id="ms_clarity"
               strategy="afterInteractive"
