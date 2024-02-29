@@ -1,6 +1,6 @@
-"use client";
-import Rive from "@rive-app/react-canvas";
 import { Lora } from "next/font/google";
+import AnimatedLogo from "./AnimatedLogo";
+import Link from "next/link";
 
 const lora = Lora({ subsets: ["latin"] });
 
@@ -23,8 +23,10 @@ export default function PageTitle(props: IPageTitleProps) {
 
 function Logo() {
   return (
-    <div className="w-14 h-14">
-      <Rive src="/mantis.riv" />
-    </div>
+    <Link href="/">
+      <div className="w-14 h-14">
+        <AnimatedLogo />
+      </div>
+    </Link>
   );
 }
