@@ -12,6 +12,7 @@ import { cookies } from "next/headers";
 import LocationTime from "./LocationTime";
 import { Button } from "../ui/button";
 import { Download } from "lucide-react";
+import Link from "next/link";
 
 export default async function EventCard({ event_id }: { event_id: string }) {
   const cookieStore = cookies();
@@ -72,10 +73,15 @@ export default async function EventCard({ event_id }: { event_id: string }) {
               <CardDescription className="pb-1.5">Hosted By</CardDescription>
               <CardTitle>@{event.guilds.short_name} </CardTitle>
             </div>
-            <Button className="sm:w-fit w-full">
-              <Download className="mr-2 h-4 w-4" />
-              Export Calendar
-            </Button>
+            <Link
+              href={`webcal://api.uwclubs.com/calendar/?guild_id=${event.guild_id}`}
+              
+            >
+              <Button className="sm:w-fit w-full">
+                <Download className="mr-2 h-4 w-4" />
+                Export Calendar
+              </Button>
+            </Link>
           </CardHeader>
           <CardContent>
             <p>{event.guilds.description}</p>
