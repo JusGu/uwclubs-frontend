@@ -23,7 +23,7 @@ export default function Page() {
         <ChevronRight size={20} className="inline-block" />
         <Link href="/learn">Learn</Link>
         <div className="flex flex-col gap-4 my-4">
-          <h2 className="text-3xl font-bold">Invite Manni</h2>
+          <h2 className="text-3xl font-bold">Invite Manny</h2>
           <p>
             If you don’t have an invite link, please{" "}
             <a
@@ -36,7 +36,7 @@ export default function Page() {
           </p>
           <div className="py-4">
             <Image
-              alt="Step one: Invite Manni"
+              alt="Step one: Invite Manny"
               src="/join/step_one.png"
               width={0}
               height={0}
@@ -49,7 +49,7 @@ export default function Page() {
           <h2 className="text-3xl font-bold">
             Link {renderDiscordHoverable("# announcements")}
           </h2>
-          <p>Manni can only read messages in linked channels.</p>
+          <p>Manny can only read messages in linked channels.</p>
           <div className="py-4">
             <Image
               alt="Step two: Link the bot"
