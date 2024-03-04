@@ -9,10 +9,10 @@ import {
 import { createClient } from "@/utils/supabase/server";
 import { IEvent } from "@/app/events/models";
 import { cookies } from "next/headers";
-import LocationTime from "./LocationTime";
-import { Button } from "../ui/button";
-import { Download } from "lucide-react";
-import Link from "next/link";
+import LocationTime from "../LocationTime";
+import ClubEventsDropdown from "./ClubEventsDropdown";
+import { Separator } from "@/components/ui/separator";
+import EventDropdown from "./EventDropdown";
 
 export default async function EventCard({ event_id }: { event_id: string }) {
   const cookieStore = cookies();
@@ -48,12 +48,12 @@ export default async function EventCard({ event_id }: { event_id: string }) {
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex-row items-start justify-between space-y-0 pb-4">
         <CardTitle className="text-3xl">{event.title}</CardTitle>
-        <CardDescription>@{event.guilds.short_name}</CardDescription>
+        <EventDropdown event={event} />
       </CardHeader>
       <CardContent>
-        <LocationTime event={event} />
+      <LocationTime event={event} />
         <p className="mt-4">{event.description}</p>
         <div className="mt-4">
           <a
@@ -66,28 +66,17 @@ export default async function EventCard({ event_id }: { event_id: string }) {
           </a>
         </div>
       </CardContent>
-      <CardFooter>
-        <Card className="w-full">
-          <CardHeader className="sm:flex-row items-start justify-between space-y-2 sm:space-y-0 flex-wrap pb-4">
-            <div>
-              <CardDescription className="pb-1.5">Hosted By</CardDescription>
-              <CardTitle>@{event.guilds.short_name} </CardTitle>
-            </div>
-            <Link
-              href={`webcal://api.uwclubs.com/calendar/?guild_id=${event.guild_id}`}
-              
-            >
-              <Button className="sm:w-fit w-full">
-                <Download className="mr-2 h-4 w-4" />
-                Export Calendar
-              </Button>
-            </Link>
-          </CardHeader>
-          <CardContent>
-            <p>{event.guilds.description}</p>
-          </CardContent>
-        </Card>
-      </CardFooter>
+      <Separator className="opacity-50" />
+      <CardHeader className="flex-row items-start justify-between space-y-0 pb-4">
+        <div>
+          <CardDescription className="pb-1.5">Hosted By</CardDescription>
+          <CardTitle>@{event.guilds.short_name} </CardTitle>
+        </div>
+        <ClubEventsDropdown event={event} />
+      </CardHeader>
+      <CardContent>
+        <p>{event.guilds.description}</p>
+      </CardContent>
     </Card>
   );
 }
