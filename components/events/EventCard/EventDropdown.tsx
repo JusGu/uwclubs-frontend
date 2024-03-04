@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { getEventURL } from "@/lib/api";
 
 interface IEventCardDropdown {
   event: IEvent;
@@ -33,7 +34,7 @@ export default function EventDropdown(props: IEventCardDropdown) {
       >
         <DropdownMenuGroup>
           <Link
-            href={`https://api.uwclubs.com/calendar/?event_id=${event.id}`}
+            href={getEventURL(event.id)}
             target="_blank"
           >
             <DropdownMenuItem>Download Event</DropdownMenuItem>

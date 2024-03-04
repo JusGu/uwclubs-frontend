@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getCalendarURL, getWebCalendarURL } from "@/lib/api";
 
 interface IEventCardDropdown {
   event: IEvent;
@@ -57,7 +58,7 @@ export default function ClubEventsDropdown(props: IEventCardDropdown) {
       >
         <DropdownMenuGroup>
           <Link
-            href={`https://api.uwclubs.com/calendar/?guild_id=${event.guild_id}`}
+            href={getCalendarURL(event.guild_id)}
             target="_blank"
           >
             <DropdownMenuItem>Download Calendar</DropdownMenuItem>
@@ -105,7 +106,7 @@ function RenderSubscription(props: IRenderSubscription) {
             <TabsTrigger value="other">Other</TabsTrigger>
           </TabsList>
           <TabsContent value="ios">
-            <Link href={`webcal://api.uwclubs.com/calendar/?guild_id=${event.guild_id}`}>
+            <Link href={getWebCalendarURL(event.guild_id)} target="_blank">
               <Button size="lg" className="w-full" onClick={handleSubscribeClick}>
                 Subscribe to Calendar
               </Button>
@@ -123,13 +124,13 @@ function RenderSubscription(props: IRenderSubscription) {
                 <div className="flex flex-1 gap-2 items-center flex-nowrap">
                   <Input
                     id="link"
-                    defaultValue={`https://api.uwclubs.com/calendar/?guild_id=${event.guild_id}`}
+                    defaultValue={getWebCalendarURL(event.guild_id)}
                     readOnly
                   />
                   <Button
                     onClick={() => {
                       navigator.clipboard.writeText(
-                        `https://api.uwclubs.com/calendar/?guild_id=${event.guild_id}`
+                        getWebCalendarURL(event.guild_id)
                       );
                       setIsCopied(true);
                       setTimeout(() => setIsCopied(false), 2000);
