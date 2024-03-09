@@ -7,7 +7,7 @@ interface IFormatDateProps {
 }
 
 export default function FormatDate(props: IFormatDateProps) {
-  const { dateString, timezone = "EST" } = props;
+  const { dateString, timezone = "America/New_York" } = props;
   const date = zonedTimeToUtc(dateString, "America/New_York");
 
   const dayOfWeek = formatInTimeZone(date, timezone, "EEEEEEEEE");
