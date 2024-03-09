@@ -1,7 +1,7 @@
 export const formatTime = (time: string) => {
     const date = new Date(time);
     return date.toLocaleTimeString("en-US", {
-      timeZone: "EST",
+      timeZone: "America/New_York",
       hour12: true,
       hour: "numeric",
       minute: "numeric",
