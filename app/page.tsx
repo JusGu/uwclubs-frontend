@@ -4,6 +4,7 @@ import Link from "next/link";
 import Mockup from "@/components/Mockup";
 import { Calistoga } from "next/font/google";
 import Image from "next/image";
+import FAQAccordion from "@/components/faq/FAQAccordian";
 
 const calistoga = Calistoga({ weight: "400", subsets: ["latin"] }); // Initialize Calistoga font with required weight
 
@@ -50,61 +51,76 @@ export default async function Index() {
           <Mockup />
         </div>
       </div>
-      <div className="flex justify-center space-between gap-4 items-center flex-wrap m-4">
-          <div className="flex flex-col gap-4 max-w-md">
-            <h3 className={`${calistoga.className} text-4xl`}>About</h3>
-            <p className="text-xl">
-              UWClubs brings together clubs across{" "}
-              <span className="italic rounded border border-1 px-1">
-                Waterloo
-              </span>{" "}
-              to create a centralized place to view and navigate club events.
-            </p>
-            <p className="text-xl">Let's make club events accessible!</p>
-          </div>
-            <Image
-              src="/manny_drawn.png"
-              alt="marker drawn mascot, manny"
-              width={300}
-              height={300}
-            />
+      <div className="flex justify-center md:justify-between gap-4 items-center flex-wrap m-4 max-w-3xl w-full px-4">
+        <div className="flex flex-col gap-4 max-w-md">
+          <h3 className={`${calistoga.className} text-4xl md:text-5xl`}>
+            About
+          </h3>
+          <p className="text-lg md:text-xl">
+            UWClubs brings together clubs across{" "}
+            <span className="italic rounded border border-1 px-1">
+              Waterloo
+            </span>{" "}
+            to create a centralized place to view and navigate club events.
+          </p>
+          <p className="text-lg md:text-xl">
+            Let's make club events accessible!
+          </p>
         </div>
-        <div className="flex gap-4 items-center flex-wrap justify-center m-4">
-          <Image
-            src="/search.png"
-            alt="magnifying glass"
-            width={200}
-            height={200}
-          />
-          <div className="flex flex-col gap-4 max-w-lg">
-            <h3 className={`${calistoga.className} text-4xl`}>
-              See what's Happening
-            </h3>
-            <p className="text-xl">
-              Club events have never been more accessible.
-            </p>
-          </div>
+        <Image
+          src="/manny_drawn.png"
+          alt="marker drawn mascot, manny"
+          width={270}
+          height={270}
+        />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 m-4 max-w-2xl w-full px-4">
+        <div className="w-full justify-center flex">
+        <Image
+          src="/search.png"
+          alt="magnifying glass"
+          width={200}
+          height={200}
+        />
         </div>
-        <div className="flex gap-4 items-center flex-wrap justify-center m-4">
-          <Image src="/alarm.png" alt="alarm clock" width={200} height={200} />
-          <div className="flex flex-col gap-4 max-w-lg">
-            <h3 className={`${calistoga.className} text-4xl`}>
-              Stay in the Loop
-            </h3>
-            <p className="text-xl">
-              Club events are instantly added to UWClubs.
-            </p>
-          </div>
+        <div className="flex flex-col gap-2 justify-center">
+          <h3 className={`${calistoga.className} text-4xl md:text-5xl`}>
+            See what's Happening
+          </h3>
+          <p className="text-lg md:text-xl">
+            Club events have never been more accessible.
+          </p>
         </div>
-        <div className="flex justify-center gap-4 items-center flex-wrap m-4">
-          <Image src="/coffee.png" alt="coffee cup" width={200} height={200} />
-          <div className="flex flex-col gap-4 max-w-lg">
-            <h3 className={`${calistoga.className} text-4xl`}>
-              Ridiculously Easy Setup
-            </h3>
-            <p className="text-xl">Remove redundant workflows.</p>
-          </div>
+        <div className="w-full justify-center flex">
+
+        <Image src="/alarm.png" alt="alarm clock" width={200} height={200} />
         </div>
+        <div className="flex flex-col gap-2 justify-center">
+          <h3 className={`${calistoga.className} text-4xl md:text-5xl`}>
+            Stay in the Loop
+          </h3>
+          <p className="text-lg md:text-xl">Real Time Updates. Club events are instantly added to UWClubs.</p>
+        </div>
+        <div className="w-full justify-center flex">
+
+        <Image src="/coffee.png" alt="coffee cup" width={200} height={200} />
+        </div>
+        <div className="flex flex-col gap-2 justify-center">
+          <h3 className={`${calistoga.className} text-4xl md:text-5xl`}>
+            Ridiculously Easy Setup
+          </h3>
+          <p className="text-lg md:text-xl">Remove redundant workflows with our real-time event scraping.</p>
+          <Link href="/learn/join">
+            <Button variant="link" size="lg" className="hover:underline p-0 mt-[-12px]">
+              Join as a Club
+            </Button>
+          </Link>
+        </div>
+      </div>
+      <div className="w-full sm:w-1/2 mx-auto p-6">
+
+      <FAQAccordion />
+      </div>
     </div>
   );
 }

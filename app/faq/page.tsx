@@ -1,8 +1,7 @@
-import FAQAccordion from "@/components/FAQAccordian";
+import FAQAccordion from "@/components/faq/FAQAccordian";
 import Hero, { IHeroProps } from "@/components/shared/Hero";
-import PageTitle from "@/components/shared/PageTitle";
 import PageWrapper from "@/components/shared/PageWrapper";
-import { ChevronRight, Search } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export default function Page() {
