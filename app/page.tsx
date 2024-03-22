@@ -16,7 +16,7 @@ export default async function Index() {
           <AnimatedLogo />
         </div>
         <h1
-          className={`text-7xl md:text-8xl font-bold text-center ${calistoga.className}`}
+          className={`text-7xl md:text-9xl font-bold text-center ${calistoga.className}`}
         >
           UWClubs
         </h1>
@@ -44,14 +44,14 @@ export default async function Index() {
         >
           A Calendar for Club Events.
         </h2>
-        <h2 className={`text2-xl md:text-3xl text-center`}>
+        <h2 className={`text-2xl md:text-3xl text-center`}>
           Built by Students, for Students.
         </h2>
-        <div className="w-screen h-[40vh] md:w-3/4 md:h-screen">
+        <div className="w-screen h-[40vh] md:w-3/4 md:h-screen my-10">
           <Mockup />
         </div>
       </div>
-      <div className="flex justify-center md:justify-between gap-4 items-center flex-wrap m-4 max-w-3xl w-full px-4">
+      <div className="flex justify-center md:justify-between gap-4 items-center flex-wrap max-w-3xl w-full px-4 pb-10">
         <div className="flex flex-col gap-4 max-w-md">
           <h3 className={`${calistoga.className} text-4xl md:text-5xl`}>
             About
@@ -67,21 +67,23 @@ export default async function Index() {
             Let's make club events accessible!
           </p>
         </div>
-        <Image
-          src="/manny_drawn.png"
-          alt="marker drawn mascot, manny"
-          width={270}
-          height={270}
-        />
+        <div className="hidden sm:block">
+          <Image
+            src="/manny_drawn.png"
+            alt="marker drawn mascot, manny"
+            width={270}
+            height={270}
+          />
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 m-4 max-w-2xl w-full px-4">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 max-w-2xl w-full px-4 mt-10">
         <div className="w-full justify-center flex">
-        <Image
-          src="/search.png"
-          alt="magnifying glass"
-          width={200}
-          height={200}
-        />
+          <Image
+            src="/search.png"
+            alt="magnifying glass"
+            width={200}
+            height={200}
+          />
         </div>
         <div className="flex flex-col gap-2 justify-center">
           <h3 className={`${calistoga.className} text-4xl md:text-5xl`}>
@@ -92,34 +94,42 @@ export default async function Index() {
           </p>
         </div>
         <div className="w-full justify-center flex">
-
-        <Image src="/alarm.png" alt="alarm clock" width={200} height={200} />
+          <Image src="/alarm.png" alt="alarm clock" width={200} height={200} />
         </div>
         <div className="flex flex-col gap-2 justify-center">
           <h3 className={`${calistoga.className} text-4xl md:text-5xl`}>
             Stay in the Loop
           </h3>
-          <p className="text-lg md:text-xl">Real Time Updates. Club events are instantly added to UWClubs.</p>
+          <p className="text-lg md:text-xl">
+            Real Time Updates. Club events are instantly added to UWClubs.
+          </p>
         </div>
         <div className="w-full justify-center flex">
-
-        <Image src="/coffee.png" alt="coffee cup" width={200} height={200} />
+          <Image src="/coffee.png" alt="coffee cup" width={200} height={200} />
         </div>
         <div className="flex flex-col gap-2 justify-center">
           <h3 className={`${calistoga.className} text-4xl md:text-5xl`}>
             Ridiculously Easy Setup
           </h3>
-          <p className="text-lg md:text-xl">Remove redundant workflows with our real-time event scraping.</p>
+          <p className="text-lg md:text-xl">
+            Remove redundant workflows with our real-time event scraping.
+          </p>
           <Link href="/learn/join">
-            <Button variant="link" size="lg" className="hover:underline p-0 mt-[-12px]">
+            <Button
+              variant="link"
+              size="lg"
+              className="hover:underline p-0 mt-[-12px]"
+            >
               Join as a Club
             </Button>
           </Link>
         </div>
       </div>
-      <div className="w-full sm:w-1/2 mx-auto p-6">
-
-      <FAQAccordion />
+      <div className="w-full sm:w-1/2 mx-auto p-4 mt-10">
+        <h3 className={`${calistoga.className} text-4xl md:text-5xl my-6 text-center`}>
+          FAQ
+        </h3>
+        <FAQAccordion />
       </div>
     </div>
   );
