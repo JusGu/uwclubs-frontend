@@ -5,12 +5,15 @@ import Mockup from "@/components/Mockup";
 import { Calistoga } from "next/font/google";
 import Image from "next/image";
 import FAQAccordion from "@/components/faq/FAQAccordian";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-const calistoga = Calistoga({ weight: "400", subsets: ["latin"] }); // Initialize Calistoga font with required weight
+const calistoga = Calistoga({ weight: "400", subsets: ["latin"] }); 
 
 export default async function Index() {
   return (
-    <div className="flex flex-col items-center min-h-screen w-full h-full">
+    <div className="flex flex-col items-center min-h-dvh w-full h-full">
+      <Header />
       <div className="flex flex-col items-center h-screen justify-center gap-4">
         <div className="w-20 h-20">
           <AnimatedLogo />
@@ -126,11 +129,15 @@ export default async function Index() {
         </div>
       </div>
       <div className="w-full sm:w-1/2 mx-auto p-4 mt-10">
-        <h3 className={`${calistoga.className} text-4xl md:text-5xl my-6 text-center`}>
+        <h3
+          className={`${calistoga.className} text-4xl md:text-5xl my-6 text-center`}
+        >
           FAQ
         </h3>
         <FAQAccordion />
       </div>
+      <Footer />
+
     </div>
   );
 }

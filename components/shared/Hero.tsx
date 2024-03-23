@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Lora } from "next/font/google";
+import { Calistoga } from "next/font/google";
 
-const lora = Lora({ subsets: ["latin"] }); // Initialize Lora font
+const calistoga = Calistoga({ weight: "400", subsets: ["latin"] }); // Initialize Calistoga font with required weight
 
 export interface IHeroProps {
   src: string;
@@ -30,7 +30,7 @@ export default function Hero({
         )}
         <h1
           className="text-6xl sm:text-8xl font-bold"
-          style={{ fontFamily: lora.style.fontFamily, lineHeight: '1.2' }}
+          style={{ fontFamily: calistoga.style.fontFamily, lineHeight: '1.2' }}
         >
           {title}
         </h1>

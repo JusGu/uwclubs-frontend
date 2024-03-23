@@ -1,18 +1,29 @@
 "use client";
-import { Lora } from "next/font/google";
 import AnimatedLogo from "./AnimatedLogo";
 import Link from "next/link";
+import { Calistoga } from "next/font/google";
 
-const lora = Lora({ subsets: ["latin"] });
+const calistoga = Calistoga({ weight: "400", subsets: ["latin"] }); // Initialize Calistoga font with required weight
+export default function TextLogo({ size = "sm" }: { size?: "sm" | "md" | "lg" }) {
+  const textSizeClass = {
+    sm: "text-2xl",
+    md: "text-3xl",
+    lg: "text-5xl",
+  }[size];
 
-export default function TextLogo() {
+  const logoSizeClass = {
+    sm: "w-12 h-12",
+    md: "w-14 h-14",
+    lg: "w-16 h-16",
+  }[size];
+
   return (
     <Link href="/">
       <div className="flex gap-2 items-center">
-        <div className="w-12 h-12">
+        <div className={logoSizeClass}>
           <AnimatedLogo />
         </div>
-        <h1 className={`text-2xl font-bold text-foreground ${lora.className}`}>
+        <h1 className={`${textSizeClass} font-bold text-foreground ${calistoga.className}`}>
           UWClubs
         </h1>
       </div>
