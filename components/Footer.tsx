@@ -3,11 +3,11 @@ import { Separator } from "./ui/separator";
 import { Calistoga } from "next/font/google";
 const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 
-const linkClass = "hover:opacity-100 opacity-80";
+const linkClass = "hover:opacity-100 opacity-60";
 export default function Footer() {
   return (
     <div
-      className={`w-full sm:w-1/2 mx-auto p-4 mt-10 ${calistoga.className} text-base`}
+      className={`w-full sm:w-1/2 mx-auto p-4 mt-10 mb-14 ${calistoga.className} text-base`}
     >
       <Separator />
       <div className="flex justify-between gap-2 mt-2">
