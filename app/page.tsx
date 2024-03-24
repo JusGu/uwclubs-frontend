@@ -50,7 +50,7 @@ export default async function Index() {
         <h2 className={`text-2xl md:text-3xl text-center`}>
           Built by Students, for Students.
         </h2>
-        <div className="w-screen max-w-5xl h-[80vw] max-h-[830px] my-10 border">
+        <div className="w-screen max-w-5xl h-[80vw] max-h-[830px] my-10">
           <Mockup />
         </div>
       </div>
