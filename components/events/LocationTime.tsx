@@ -1,7 +1,7 @@
 import { Clock, MapPin } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
 import { IEvent } from "../../app/events/models";
-import { formatTime } from "@/lib/time";
+import { formatTime } from "@/lib/datetime";
 
 function renderTime(start_time: string, end_time: string) {
   if (!end_time) {

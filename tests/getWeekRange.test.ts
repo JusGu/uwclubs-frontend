@@ -1,4 +1,4 @@
-import { getWeekRange } from '../lib/getWeekRange';
+import { getWeekRange } from '../lib/datetime';
 
 describe('getWeekRange', () => {
   const dates = [

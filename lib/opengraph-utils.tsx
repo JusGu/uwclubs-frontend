@@ -14,124 +14,124 @@ export interface OpenGraphEventDetails {
   location: string;
 }
 
-export async function loadFontBold() {
-    const fontData = await fetch(
-      new URL("@/assets/fonts/Inter-Bold.ttf", import.meta.url)
-    ).then((res) => res.arrayBuffer());
-    return fontData;
-  }
-  
-  export async function loadFallbackImage() {
-    const fallbackImage = await fetch(
-      new URL("@/app/opengraph-image.gif", import.meta.url)
-    ).then((res) => res.arrayBuffer());
-    return fallbackImage;
-  }
-  
-export async function fetchEventData(eventId: string) {
-    const supabase = createClient();
-    const { data, error } = await supabase
-      .from("events")
-      .select("title, start_time, location, message_id, guilds ( short_name )")
-      .eq("message_id", eventId);
-  
-    return { data, error };
-  }
-  
-  export async function getImageOptions(): Promise<ImageResponseOptions> {
-    const fontDataBold = await loadFontBold();
-    return {
-      width: 1200,
-      height: 630,
-      fonts: [
-        {
-          name: "InterBold",
-          data: fontDataBold,
-          style: "normal",
-        },
-      ],
-    };
-  }
-  
- export function toOpenGraphEventDetails(data: any): OpenGraphEventDetails | null {
-    if (!data || data.length === 0) return null;
-    const event = data[0];
-    const dateDescription = formatDateDescription(event.start_time);
-    return {
-      title: event.title,
-      club_name: event.guilds.short_name,
-      date_description: dateDescription,
-      location: event.location,
-    };
-  }
-  
-  export const baseStyle = {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    backgroundColor: club_beige,
-    flexDirection: "column" as const,
-    color: club_gray,
-    justifyContent: "center",
-    fontFamily: "Inter",
+export const loadFontBold = async () => {
+  const fontData = await fetch(
+    new URL("@/assets/fonts/Inter-Bold.ttf", import.meta.url)
+  ).then((res) => res.arrayBuffer());
+  return fontData;
+};
+
+export const loadFallbackImage = async () => {
+  const fallbackImage = await fetch(
+    new URL("@/app/opengraph-image.gif", import.meta.url)
+  ).then((res) => res.arrayBuffer());
+  return fallbackImage;
+};
+
+export const fetchEventData = async (eventId: string) => {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from("events")
+    .select("title, start_time, location, message_id, guilds ( short_name )")
+    .eq("message_id", eventId);
+
+  return { data, error };
+};
+
+export const getImageOptions = async (): Promise<ImageResponseOptions> => {
+  const fontDataBold = await loadFontBold();
+  return {
+    width: 1200,
+    height: 630,
+    fonts: [
+      {
+        name: "InterBold",
+        data: fontDataBold,
+        style: "normal",
+      },
+    ],
   };
-  
-  export const leftBarStyle = {
-    width: "50px",
-    height: "1000px",
-    backgroundColor: club_blue,
-    position: "absolute" as const,
-    top: 0,
-    left: 0,
+};
+
+export const toOpenGraphEventDetails = (
+  data: any
+): OpenGraphEventDetails | null => {
+  if (!data || data.length === 0) return null;
+  const event = data[0];
+  const dateDescription = formatDateDescription(event.start_time);
+  return {
+    title: event.title,
+    club_name: event.guilds.short_name,
+    date_description: dateDescription,
+    location: event.location,
   };
-  
+};
+
+export const baseStyle = {
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  backgroundColor: club_beige,
+  flexDirection: "column" as const,
+  color: club_gray,
+  justifyContent: "center",
+  fontFamily: "Inter",
+};
+
+export const leftBarStyle = {
+  width: "50px",
+  height: "1000px",
+  backgroundColor: club_blue,
+  position: "absolute" as const,
+  top: 0,
+  left: 0,
+};
+
 export const LucideClock = (size: number) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
-  );
-  
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <polyline points="12 6 12 12 16 14" />
+  </svg>
+);
+
 export const LucidePin = (size: number) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-      <circle cx="12" cy="10" r="3" />
-    </svg>
-  );
-  
-  export const titleStyle = {
-    fontSize: 86,
-    margin: 0,
-    whiteSpace: "normal",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    display: "-webkit-box",
-    WebkitLineClamp: 2,
-    WebkitBoxOrient: "vertical",
-    fontFamily: "InterBold",
-  } as const;
-  
-  
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+);
+
+export const titleStyle = {
+  fontSize: 86,
+  margin: 0,
+  whiteSpace: "normal",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  display: "-webkit-box",
+  WebkitLineClamp: 2,
+  WebkitBoxOrient: "vertical",
+  fontFamily: "InterBold",
+} as const;
 
 export const EventDetail = ({
   icon,

@@ -1,8 +1,8 @@
 import { formatInTimeZone } from "date-fns-tz";
-import { getWeekRange } from "./getWeekRange";
+import { getWeekRange } from "./datetime";
 import { EventListSearchParams } from "@/app/events/models";
 import { differenceInCalendarWeeks, startOfWeek } from "date-fns";
-import { zonedTimeToUtc } from 'date-fns-tz'
+import { zonedTimeToUtc } from "date-fns-tz";
 
 export const toQueryParams = (date: Date): string => {
   return formatInTimeZone(date, "America/New_York", "yyyy-MM-dd");
@@ -20,10 +20,12 @@ export const endOfDayESTQueryParam = (dateString: string): Date => {
   return utcTime;
 };
 
-export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
+export const getStartAndEndOfWeek = (
+  searchParams: EventListSearchParams
+): {
   startOfWeek: Date;
   endOfWeek: Date;
-} {
+} => {
   const startParam = searchParams.start;
   const endParam = searchParams.end;
 
@@ -39,7 +41,7 @@ export function getStartAndEndOfWeek(searchParams: EventListSearchParams): {
       endOfWeek: weekRange.endOfWeek,
     };
   }
-}
+};
 
 export const getNavigationLink = (relativeDate: Date) => {
   const { startOfWeek, endOfWeek } = getWeekRange(relativeDate);
@@ -57,36 +59,35 @@ export const weeksAwayFromCurrent = (inputDate: Date): number => {
 };
 
 const formatEventMessage = (numberOfResults: number, label: string) => {
-    if (numberOfResults === 0) return `No events ${label}`;
-    
-    const plural = numberOfResults !== 1 ? 'events' : 'event';
-    return `${numberOfResults} ${plural} ${label}`;
-}
+  if (numberOfResults === 0) return `No events ${label}`;
+
+  const plural = numberOfResults !== 1 ? "events" : "event";
+  return `${numberOfResults} ${plural} ${label}`;
+};
 
 export const getWeekDescriptor = (
-    inputDate: Date,
-    numberOfResults: number
+  inputDate: Date,
+  numberOfResults: number
 ): string => {
-    const weeksAway = weeksAwayFromCurrent(inputDate);
-    let weekLabel = "";
+  const weeksAway = weeksAwayFromCurrent(inputDate);
+  let weekLabel = "";
 
-    switch (weeksAway) {
-        case -1:
-            weekLabel = 'took place last week';
-            break;
-        case 0:
-            weekLabel = 'occurring this week';
-            break;
-        case 1:
-            weekLabel = 'scheduled for next week';
-            break;
-        default:
-            if(weeksAway < 0)
-                weekLabel = `took place ${Math.abs(weeksAway)} weeks ago`;
-            else 
-                weekLabel = `scheduled for ${weeksAway} weeks from now`;
-            break;
-    }
-    
-    return formatEventMessage(numberOfResults, weekLabel);
+  switch (weeksAway) {
+    case -1:
+      weekLabel = "took place last week";
+      break;
+    case 0:
+      weekLabel = "occurring this week";
+      break;
+    case 1:
+      weekLabel = "scheduled for next week";
+      break;
+    default:
+      if (weeksAway < 0)
+        weekLabel = `took place ${Math.abs(weeksAway)} weeks ago`;
+      else weekLabel = `scheduled for ${weeksAway} weeks from now`;
+      break;
+  }
+
+  return formatEventMessage(numberOfResults, weekLabel);
 };
