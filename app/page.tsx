@@ -50,7 +50,7 @@ export default async function Index() {
         <h2 className={`text-2xl md:text-3xl text-center`}>
           Built by Students, for Students.
         </h2>
-        <div className="w-screen h-[40vh] md:w-3/4 md:h-screen my-10">
+        <div className="w-screen max-w-5xl h-[80vw] max-h-[830px] my-10 border">
           <Mockup />
         </div>
       </div>
@@ -79,7 +79,7 @@ export default async function Index() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 max-w-2xl w-full px-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 max-w-md md:max-w-3xl w-full px-4 mt-10">
         <div className="w-full justify-center flex">
           <Image
             src="/search.png"
@@ -88,7 +88,7 @@ export default async function Index() {
             height={200}
           />
         </div>
-        <div className="flex flex-col gap-2 justify-center">
+        <div className="flex flex-col gap-2 justify-center w-full ">
           <h3 className={`${calistoga.className} text-4xl md:text-5xl`}>
             See what's Happening
           </h3>

@@ -14,7 +14,7 @@ export default function Mockup() {
     src: "/mockup.riv",
     stateMachines: "open_close",
     autoplay: true,
-    layout: new Layout({ fit: Fit.Contain, alignment: Alignment.TopCenter }),
+    layout: new Layout({ fit: Fit.FitWidth, alignment: Alignment.TopCenter }),
   });
 
   const scrollInput = useStateMachineInput(rive, "open_close", "scroll", 0);
