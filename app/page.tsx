@@ -128,7 +128,7 @@ export default async function Index() {
           </Link>
         </div>
       </div>
-      <div className="w-full sm:w-1/2 mx-auto p-4 mt-10">
+      <div className="max-w-md md:max-w-3xl w-full mx-auto p-4 mt-10">
         <h3
           className={`${calistoga.className} text-4xl md:text-5xl my-6 text-center`}
         >
