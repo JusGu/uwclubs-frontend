@@ -1,5 +1,7 @@
 import React from "react";
 import TextLogo from "@/components/shared/TextLogo";
+import Header from "@/components/Header";
+import Footer from "../Footer";
 
 interface PageWrapperProps {
   children: React.ReactNode;
@@ -8,10 +10,12 @@ interface PageWrapperProps {
 const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   return (
     <div className="w-full">
-      <div className="py-2 px-5 sm:px-12">
+      <Header/>
+      <div className="py-4 flex justify-center">
         <TextLogo />
       </div>
       {children}
+      <Footer />
     </div>
   );
 };

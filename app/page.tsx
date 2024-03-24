@@ -8,7 +8,7 @@ import FAQAccordion from "@/components/faq/FAQAccordian";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const calistoga = Calistoga({ weight: "400", subsets: ["latin"] }); 
+const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 
 export default async function Index() {
   return (
@@ -60,11 +60,8 @@ export default async function Index() {
             About
           </h3>
           <p className="text-lg md:text-xl">
-            UWClubs brings together clubs across{" "}
-            <span className="italic rounded border border-1 px-1">
-              Waterloo
-            </span>{" "}
-            to create a centralized place to view and navigate club events.
+            UWClubs brings together clubs across Waterloo to create a
+            centralized place to view and navigate club events.
           </p>
           <p className="text-lg md:text-xl">
             Let's make club events accessible!
@@ -137,7 +134,6 @@ export default async function Index() {
         <FAQAccordion />
       </div>
       <Footer />
-
     </div>
   );
 }

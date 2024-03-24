@@ -7,7 +7,7 @@ const linkClass = "hover:opacity-100 opacity-60";
 export default function Footer() {
   return (
     <div
-      className={`max-w-md md:max-w-3xl w-full mx-auto p-4 mt-10 mb-14 ${calistoga.className} text-base`}
+      className={`max-w-md md:max-w-3xl w-full mx-auto p-4 mb-14 ${calistoga.className} text-base`}
     >
       <Separator />
       <div className="flex justify-between gap-2 mt-2">
