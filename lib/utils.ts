@@ -2,22 +2,16 @@ import { IWeeklyEvents } from "@/app/events/models";
 import { type ClassValue, clsx } from "clsx";
 import { formatInTimeZone } from "date-fns-tz";
 import { twMerge } from "tailwind-merge";
-import { formatDateEST } from "@/lib/time";
-import { zonedTimeToUtc } from "date-fns-tz";
+export const cn = (...inputs: ClassValue[]): string => twMerge(clsx(inputs));
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-
-export function formatDateDescription(timestampz: string): string {
-  return formatInTimeZone(
+export const formatDateDescription = (timestampz: string): string => 
+  formatInTimeZone(
     new Date(timestampz),
     "America/New_York",
     "EEE, MMM d, h:mm a"
   );
-}
 
-export function organizeEventsByDate(data: any): IWeeklyEvents {
+export const organizeEventsByDate = (data: any): IWeeklyEvents => {
   const events: IWeeklyEvents = {};
 
   data.forEach((event: any) => {
@@ -33,15 +27,15 @@ export function organizeEventsByDate(data: any): IWeeklyEvents {
   });
 
   return events;
-}
+};
 
-export function countTotalEvents(weeklyEvents: IWeeklyEvents): number {
+export const countTotalEvents = (weeklyEvents: IWeeklyEvents): number => {
   let totalEvents = 0;
   for (const day in weeklyEvents) {
     totalEvents += weeklyEvents[day as keyof IWeeklyEvents].length;
   }
   return totalEvents;
-}
+};
 
 export const getMobileDetect = (userAgent: NavigatorID["userAgent"]) => {
   const isAndroid = () => Boolean(userAgent.match(/Android/i));
