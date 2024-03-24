@@ -84,7 +84,7 @@ export const getWeekDescriptor = (
             if(weeksAway < 0)
                 weekLabel = `took place ${Math.abs(weeksAway)} weeks ago`;
             else 
-                weekLabel = `are currently scheduled for ${weeksAway} weeks from now`;
+                weekLabel = `scheduled for ${weeksAway} weeks from now`;
             break;
     }
     
