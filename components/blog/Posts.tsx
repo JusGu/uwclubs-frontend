@@ -14,7 +14,7 @@ const builder = imageUrlBuilder({ projectId, dataset });
 export default function Posts({ posts }: { posts: SanityDocument[] }) {
   return (
     <PageWrapper footerLarge={true}>
-      <main className="max-w-md md:max-w-5xl w-full mx-auto p-4 grid grid-cols-2 mt-16">
+      <main className="md:max-w-5xl w-full mx-auto p-4 grid grid-cols-1 md:grid-cols-2 mt-16">
         {posts?.length > 0 ? (
           posts.map((post) => (
             <div key={post._id}>
