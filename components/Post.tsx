@@ -12,7 +12,6 @@ import { Calistoga } from "next/font/google";
 import { redirect } from "next/navigation";
 import { renderDiscordHoverable } from "@/sanity/schemas/renderDiscordHoverable";
 import { formatDateDescription } from "@/lib/utils";
-import { urlForImage } from "@/sanity/lib/image";
 import { Separator } from "./ui/separator";
 
 const builder = imageUrlBuilder({ projectId, dataset });
@@ -72,15 +71,13 @@ export default function Post({ post }: { post: SanityDocument }) {
 
           <div className="flex items-center gap-4 mb-6">
             {author?.image && (
-              <>
                 <Image
-                  src={builder.image(author.image).width(44).height(44).url()}
+                  src={builder.image(author.image).width(108).height(108).quality(100).url()}
                   className="rounded-full m-0"
-                  height={44}
-                  width={44}
+                  height={48}
+                  width={48}
                   alt={author.image?.alt ?? author.name}
                 />
-              </>
             )}
             <div className="flex flex-col m-0">
               <p className="m-0 text-base">

@@ -34,7 +34,7 @@ export default async function Index() {
               View Events
             </Button>
           </Link>
-          <Link href="/learn/join">
+          <Link href="/blog/join">
             <Button variant="link" size="lg" className="hover:underline">
               Join as a Club
             </Button>
@@ -114,7 +114,7 @@ export default async function Index() {
           <p className="text-lg md:text-xl">
             Remove redundant workflows with our real-time event scraping.
           </p>
-          <Link href="/learn/join">
+          <Link href="/blog/join">
             <Button
               variant="link"
               size="lg"
