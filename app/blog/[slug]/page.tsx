@@ -30,3 +30,5 @@ export default async function Page({params} : {params: QueryParams}) {
     <Post post={initial.data} />
   );
 }
+
+export const dynamic = 'force-dynamic'
