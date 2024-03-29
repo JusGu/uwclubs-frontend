@@ -1,4 +1,3 @@
-"use client";
 import PageWrapper from "@/components/shared/PageWrapper";
 import Image from "next/image";
 

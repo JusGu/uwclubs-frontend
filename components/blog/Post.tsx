@@ -9,17 +9,17 @@ import PageWrapper from "../shared/PageWrapper";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Calistoga } from "next/font/google";
-import { redirect } from "next/navigation";
 import { renderDiscordHoverable } from "@/sanity/schemas/renderDiscordHoverable";
 import { formatDateDescription } from "@/lib/utils";
 import { Separator } from "../ui/separator";
+import { notFound } from 'next/navigation'
 
 const builder = imageUrlBuilder({ projectId, dataset });
 const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 
 export default function Post({ post }: { post: SanityDocument }) {
   if (!post) {
-    redirect("/blog");
+    notFound()
   }
 
   const { title, author, excerpt, mainImage, publishedAt, body } = post;
