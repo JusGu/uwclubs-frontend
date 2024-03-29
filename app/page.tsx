@@ -5,10 +5,10 @@ import Mockup from "@/components/Mockup";
 import { Calistoga } from "next/font/google";
 import Image from "next/image";
 import FAQAccordion from "@/components/faq/FAQAccordian";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer";
 
-const calistoga = Calistoga({ weight: "400", subsets: ["latin"] }); 
+const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 
 export default async function Index() {
   return (
@@ -34,7 +34,7 @@ export default async function Index() {
               View Events
             </Button>
           </Link>
-          <Link href="/learn/join">
+          <Link href="/blog/join-as-a-club">
             <Button variant="link" size="lg" className="hover:underline">
               Join as a Club
             </Button>
@@ -60,11 +60,8 @@ export default async function Index() {
             About
           </h3>
           <p className="text-lg md:text-xl">
-            UWClubs brings together clubs across{" "}
-            <span className="italic rounded border border-1 px-1">
-              Waterloo
-            </span>{" "}
-            to create a centralized place to view and navigate club events.
+            UWClubs brings together clubs across Waterloo to create a
+            centralized place to view and navigate club events.
           </p>
           <p className="text-lg md:text-xl">
             Let's make club events accessible!
@@ -117,7 +114,7 @@ export default async function Index() {
           <p className="text-lg md:text-xl">
             Remove redundant workflows with our real-time event scraping.
           </p>
-          <Link href="/learn/join">
+          <Link href="/blog/how-to-join-as-a-club">
             <Button
               variant="link"
               size="lg"
@@ -137,7 +134,6 @@ export default async function Index() {
         <FAQAccordion />
       </div>
       <Footer />
-
     </div>
   );
 }

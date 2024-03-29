@@ -51,6 +51,10 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        discordBase: "rgba(88,101,242,0.15)",
+        discordHover: "rgba(88,101,242,0.867)",
+        discordText: "rgb(88,101,242)",
+        discordTextHover: "rgb(229,231,253)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -78,5 +82,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
 }
