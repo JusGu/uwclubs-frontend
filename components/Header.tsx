@@ -9,24 +9,9 @@ export default function Header() {
   return (
     <div className="inset-x-0 max-w-max mx-auto fixed md:top-4 md:right-4 md:bottom-auto md:mr-0 bottom-4 flex md:justify-end justify-center">
       <div className=" border rounded-full bg-background brightness-105 flex-nowrap flex gap-1 px-1 z-10">
-        {/* <Link href="/about">
-        <Button variant="ghost" size="lg" className={buttonClasses}>
-          About Us
-        </Button>
-      </Link>
-      <Link href="/clubs">
-        <Button variant="ghost" size="lg" className={buttonClasses}>
-        Clubs
-        </Button>
-      </Link>
-      <Link href="/learn">
-        <Button variant="ghost" size="lg" className={buttonClasses}>
-          Learn
-        </Button>
-      </Link> */}
-        <Link href="/learn/join">
+        <Link href="/blog">
           <Button variant="ghost" size="lg" className={buttonClasses}>
-            Join as a Club
+            Blog
           </Button>
         </Link>
         <Link href="/events">

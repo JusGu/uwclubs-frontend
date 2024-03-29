@@ -9,7 +9,7 @@ interface PageWrapperProps {
 
 const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   return (
-    <div className="w-full">
+    <div className="w-full h-full">
       <Header/>
       <div className="py-4 flex justify-center">
         <TextLogo />

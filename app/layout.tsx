@@ -2,6 +2,8 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Script from "next/script";
 import { getURL, isProd } from "@/lib/env";
+import { draftMode } from "next/headers";
+import LiveVisualEditing from "@/components/LiveVisualEditing";
 
 const defaultUrl = getURL();
 const CLARITY_KEY = "l7bra27awx";
@@ -86,8 +88,9 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-        <main className="min-h-screen flex flex-col items-center">
+        <main>
           {children}
+          {draftMode().isEnabled && <LiveVisualEditing />}
         </main>
       </body>
     </html>
