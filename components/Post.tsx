@@ -12,6 +12,8 @@ import { Calistoga } from "next/font/google";
 import { redirect } from "next/navigation";
 import { renderDiscordHoverable } from "@/sanity/schemas/renderDiscordHoverable";
 import { formatDateDescription } from "@/lib/utils";
+import { urlForImage } from "@/sanity/lib/image";
+import { Separator } from "./ui/separator";
 
 const builder = imageUrlBuilder({ projectId, dataset });
 const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
@@ -21,7 +23,7 @@ export default function Post({ post }: { post: SanityDocument }) {
     redirect("/blog");
   }
 
-  const { title, author, exert, mainImage, publishedAt, body } = post;
+  const { title, author, excerpt, mainImage, publishedAt, body } = post;
 
   const myPortableTextComponents = {
     types: {
@@ -51,22 +53,54 @@ export default function Post({ post }: { post: SanityDocument }) {
   return (
     <PageWrapper>
       <main className="container mx-auto prose prose-lg p-4">
-        <div className="flex gap-2 items-center">
-          <Link href="/">Home</Link>
+        <div className="flex gap-2 items-center text-base">
+          <Link href="/" className="no-underline">Home</Link>
           <ChevronRight size={20} className="inline-block" />
-          <Link href="/blog">Blog</Link>
+          <Link href="/blog" className="no-underline">Blog</Link>
           <ChevronRight size={20} className="inline-block" />
-          <Link href={`/blog/${post.slug.current}`}>{title}</Link>
+          <Link href={`/blog/${post.slug.current}`} className="no-underline">{title}</Link>
         </div>
         <div className="my-4">
-          {title ? (
-            <h1 className={`text-5xl font-bold ${calistoga.className}`}>
-              {title}
-            </h1>
-          ) : null}
-          <p>
-            {formatDateDescription(publishedAt, "MMM dd, yyyy")}
-          </p>
+          <div className="flex flex-col gap-4 mt-6 mb-6">
+            {title ? (
+              <h1 className={`text-5xl font-bold ${calistoga.className} m-0`}>
+                {title}
+              </h1>
+            ) : null}
+            {excerpt && <p className="m-0 opacity-80">{excerpt}</p>}
+          </div>
+
+          <div className="flex items-center gap-4 mb-6">
+            {author?.image && (
+              <>
+                <Image
+                  src={builder.image(author.image).width(44).height(44).url()}
+                  className="rounded-full m-0"
+                  height={44}
+                  width={44}
+                  alt={author.image?.alt ?? author.name}
+                />
+              </>
+            )}
+            <div className="flex flex-col m-0">
+              <p className="m-0 text-base">
+                {author?.name}
+                <span className="mx-2 text-xl"> • </span>
+                {formatDateDescription(publishedAt, "MMM dd, yyyy")}
+              </p>
+              {author?.socialMediaUrl && (
+                <a
+                  href={author.socialMediaUrl}
+                  target="_blank"
+                  className="m-0 text-base opacity-50 hover:opacity-100"
+                >
+                  {author.socialMediaUrl.replace(/^https?:\/\//, "")}
+                </a>
+              )}
+            </div>
+          </div>
+          <Separator className="mb-14"/>
+
           {mainImage && (
             <Image
               alt={mainImage.alt || ""}
@@ -78,7 +112,6 @@ export default function Post({ post }: { post: SanityDocument }) {
               className="rounded-3xl"
             />
           )}
-          {exert && <b>{exert}</b>}
 
           {body ? (
             <PortableText value={body} components={myPortableTextComponents} />

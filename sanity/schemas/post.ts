@@ -71,7 +71,7 @@ export default defineType({
       title: 'title',
       author: 'author.name',
       date: 'date',
-      media: 'coverImage',
+      media: 'mainImage',
     },
     prepare({ title, media, author, date }) {
       const subtitles = [

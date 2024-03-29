@@ -4,12 +4,13 @@ import { formatInTimeZone } from "date-fns-tz";
 import { twMerge } from "tailwind-merge";
 export const cn = (...inputs: ClassValue[]): string => twMerge(clsx(inputs));
 
-export const formatDateDescription(timestampz: string, format: string = "EEE, MMM d, h:mm a"): string =>
- formatInTimeZone(
+export const formatDateDescription = (timestampz: string, format: string = "EEE, MMM d, h:mm a"): string => {
+  return formatInTimeZone(
     new Date(timestampz),
     "America/New_York",
     format
   );
+};
 
 export const organizeEventsByDate = (data: any): IWeeklyEvents => {
   const events: IWeeklyEvents = {};

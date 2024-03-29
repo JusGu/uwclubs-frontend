@@ -47,6 +47,16 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      title: "Social Media URL",
+      name: "socialMediaUrl",
+      type: "url",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["http", "https"],
+          allowRelative: false,
+        }),
+    }),
   ],
   preview: {
     select: {
