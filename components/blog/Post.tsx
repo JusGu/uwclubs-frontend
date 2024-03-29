@@ -4,7 +4,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import { SanityDocument } from "next-sanity";
 
 import { dataset, projectId } from "@/sanity/env";
-import PageWrapper from "./shared/PageWrapper";
+import PageWrapper from "../shared/PageWrapper";
 
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
@@ -12,7 +12,7 @@ import { Calistoga } from "next/font/google";
 import { redirect } from "next/navigation";
 import { renderDiscordHoverable } from "@/sanity/schemas/renderDiscordHoverable";
 import { formatDateDescription } from "@/lib/utils";
-import { Separator } from "./ui/separator";
+import { Separator } from "../ui/separator";
 
 const builder = imageUrlBuilder({ projectId, dataset });
 const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });

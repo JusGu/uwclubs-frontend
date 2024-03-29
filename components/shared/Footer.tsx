@@ -1,5 +1,5 @@
 import { discordServer, instagramContact, twitterContact } from "@/lib/contact";
-import { Separator } from "./ui/separator";
+import { Separator } from "../ui/separator";
 import { Calistoga } from "next/font/google";
 const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 

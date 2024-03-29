@@ -1,8 +1,8 @@
 import { SanityDocument } from "next-sanity";
 import { draftMode } from "next/headers";
 
-import Posts from "@/components/Posts";
-import PostsPreview from "@/components/PostsPreview";
+import Posts from "@/components/blog/Posts";
+import PostsPreview from "@/components/blog/PostsPreview";
 import { loadQuery } from "@/sanity/lib/store";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
 

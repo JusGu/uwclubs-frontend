@@ -1,7 +1,7 @@
 import React from "react";
 import TextLogo from "@/components/shared/TextLogo";
-import Header from "@/components/Header";
-import Footer from "../Footer";
+import Header from "@/components/shared/Header";
+import Footer from "./Footer";
 
 interface PageWrapperProps {
   children: React.ReactNode;

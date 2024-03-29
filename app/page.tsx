@@ -5,8 +5,8 @@ import Mockup from "@/components/Mockup";
 import { Calistoga } from "next/font/google";
 import Image from "next/image";
 import FAQAccordion from "@/components/faq/FAQAccordian";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer";
 
 const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 

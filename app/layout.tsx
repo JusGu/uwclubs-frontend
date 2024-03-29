@@ -3,7 +3,7 @@ import "./globals.css";
 import Script from "next/script";
 import { getURL, isProd } from "@/lib/env";
 import { draftMode } from "next/headers";
-import LiveVisualEditing from "@/components/LiveVisualEditing";
+import LiveVisualEditing from "@/components/blog/LiveVisualEditing";
 
 const defaultUrl = getURL();
 const CLARITY_KEY = "l7bra27awx";
