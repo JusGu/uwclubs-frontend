@@ -9,7 +9,6 @@ import PageWrapper from "../shared/PageWrapper";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Calistoga } from "next/font/google";
-import { renderDiscordHoverable } from "@/sanity/schemas/renderDiscordHoverable";
 import { formatDateDescription } from "@/lib/utils";
 import { Separator } from "../ui/separator";
 import { notFound } from 'next/navigation'
@@ -45,7 +44,13 @@ export default function Post({ post }: { post: SanityDocument }) {
       },
     },
     marks: {
-      discordHoverable: (props: any) => renderDiscordHoverable(props),
+      discordHoverable: (props: any) => (
+        <span
+          className="bg-discordBase text-discordText hover:bg-discordHover hover:text-discordTextHover px-2 rounded"
+        >
+          {props.children}
+        </span>
+      )
     },
   };
 
