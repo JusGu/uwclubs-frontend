@@ -17,6 +17,7 @@ import EventDropdown from "./EventDropdown";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert } from "@/components/ui/alert";
 import { Clock, MapPin } from "lucide-react";
+import { formatTimePicker } from "@/lib/datetime";
 
 export default async function EditableEventCard({
   event_id,
@@ -65,10 +66,25 @@ export default async function EditableEventCard({
       </CardHeader>
       <CardContent>
         <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-x-2 sm:space-y-0">
-          <Alert className="w-full">
-            <div className="flex items-center gap-3 text-sm">
-              <Clock className="h-5 w-5" />
-              {/* {renderTime(event.start_time, event.end_time)} */}
+          <Alert className="w-full h-full pt-1.5 pb-1.5 focus-within:ring-1 focus-within:ring-black">
+            <div className="flex items-center justify-center gap-3">
+              <div className="flex flex-row items-center">
+                <Input
+                  id="start_time"
+                  name="start_time"
+                  type="time"
+                  defaultValue={formatTimePicker(event.start_time)}
+                  className="block border-none focus-visible:ring-none focus-visible:ring-0 pl-0"
+                />
+                <div>—</div>
+                <Input
+                  id="end_time"
+                  name="end_time"
+                  type="time"
+                  defaultValue={formatTimePicker(event.end_time)}
+                  className="block border-none focus-visible:ring-none focus-visible:ring-0 pr-0"
+                />
+              </div>
             </div>
           </Alert>
           {event.location && (
