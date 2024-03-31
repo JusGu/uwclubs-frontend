@@ -11,7 +11,12 @@ export default async function Page({ searchParams }: { searchParams: { form: str
   const forms = await supabase
     .from("forms")
     .select("item_id")
-    .match({ id: parseInt(searchParams.form), secret: searchParams.secret })
+    .match({
+      id: parseInt(searchParams.form),
+      action: "edit",
+      item: "event",
+      secret: searchParams.secret,
+    })
     .is("deleted_at", null);
   
   // TODO: only get forms updated at in past 5 mins
