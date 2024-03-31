@@ -2,21 +2,17 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { createClient } from "@/utils/supabase/server";
 import { IEvent } from "@/app/events/models";
 import { cookies } from "next/headers";
-import LocationTime from "../LocationTime";
-import ClubEventsDropdown from "./ClubEventsDropdown";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
-import EventDropdown from "./EventDropdown";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert } from "@/components/ui/alert";
-import { Clock, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { formatTimePicker } from "@/lib/datetime";
 
 export default async function EditableEventCard({
@@ -61,7 +57,7 @@ export default async function EditableEventCard({
         <Input
           type="text"
           defaultValue={event.title}
-          className="text-3xl font-semibold pl-2 leading-none tracking-tight focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-black"
+          className="text-3xl font-semibold pl-2 pt-6 pb-6 leading-none tracking-tight focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-black"
         />
       </CardHeader>
       <CardContent>
