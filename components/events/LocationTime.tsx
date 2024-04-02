@@ -1,5 +1,5 @@
 import { Clock, MapPin } from "lucide-react";
-import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
+import { Alert } from "../ui/alert";
 import { IEvent } from "../../app/events/models";
 import { formatTime } from "@/lib/datetime";
 

@@ -17,7 +17,7 @@ export default function Error() {
           height={270}
         />
         <div className="p-6 max-w-sm mx-auto rounded-xl">
-          <h1 className={`text-5xl font-bold ${calistoga.className} mb-4`}>Page not found.</h1>
+          <h1 className={`text-3xl sm:text-5xl font-bold ${calistoga.className} mb-4`}>Page not found.</h1>
           <p>
             Looks like this page doesn't exist. Manny invites you to check out
             our other content!

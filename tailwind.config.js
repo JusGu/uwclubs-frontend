@@ -71,14 +71,14 @@ module.exports = {
           to: { height: "0" },
         },
         "fade-in": {
-          '0%, 70%': { opacity: "0" },
-          '100%': { opacity: "1" },
+          '0%, 70%': { opacity: "0", transform: "scaleY(0.2)" },
+          '100%': { opacity: "1", transform: "scaleY(1)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 1.8s",
+        "fade-in": "fade-in 0.3s ease-in-out",
       },
     },
   },
