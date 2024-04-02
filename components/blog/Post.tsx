@@ -8,13 +8,12 @@ import PageWrapper from "../shared/PageWrapper";
 
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { Calistoga } from "next/font/google";
 import { formatDateDescription } from "@/lib/utils";
 import { Separator } from "../ui/separator";
 import { notFound } from 'next/navigation'
+import { calistoga } from "@/lib/fonts";
 
 const builder = imageUrlBuilder({ projectId, dataset });
-const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 
 export default function Post({ post }: { post: SanityDocument }) {
   if (!post) {

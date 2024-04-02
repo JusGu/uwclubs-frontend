@@ -1,7 +1,6 @@
 import { discordServer, instagramContact, twitterContact } from "@/lib/contact";
 import { Separator } from "../ui/separator";
-import { Calistoga } from "next/font/google";
-const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
+import { calistoga } from "@/lib/fonts";
 
 const linkClass = "hover:opacity-100 opacity-60";
 export default function Footer({ large = false }) {

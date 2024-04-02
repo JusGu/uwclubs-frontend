@@ -2,13 +2,12 @@ import AnimatedLogo from "@/components/shared/AnimatedLogo";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Mockup from "@/components/Mockup";
-import { Calistoga } from "next/font/google";
 import Image from "next/image";
 import FAQAccordion from "@/components/faq/FAQAccordian";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
+import { calistoga } from "@/lib/fonts";
 
-const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 
 export default async function Index() {
   return (
