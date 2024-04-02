@@ -1,9 +1,8 @@
 "use client";
+import { calistoga } from "@/lib/fonts";
 import AnimatedLogo from "./AnimatedLogo";
 import Link from "next/link";
-import { Calistoga } from "next/font/google";
 
-const calistoga = Calistoga({ weight: "400", subsets: ["latin"] }); // Initialize Calistoga font with required weight
 export default function TextLogo({ size = "sm" }: { size?: "sm" | "md" | "lg" }) {
   const textSizeClass = {
     sm: "text-2xl",

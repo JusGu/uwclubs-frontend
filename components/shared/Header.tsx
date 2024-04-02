@@ -1,8 +1,5 @@
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { Calistoga } from "next/font/google";
-
-const calistoga = Calistoga({ weight: "400", subsets: ["latin"] }); // Initialize Calistoga font with required weight
 
 const buttonClasses = `rounded-full my-1 px-2 md:px-3 py-2 h-fit w-fit`;
 export default function Header() {

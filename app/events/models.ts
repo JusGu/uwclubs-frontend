@@ -13,10 +13,13 @@ export interface IEvent {
     channel_id: string;
     message_id: string;
     guilds: IGuild;
+    created_at?: string;
+    original_message?: string;
 }
 
 interface IGuild {
     short_name: string;
+    description?: string;
 }
 
 export interface IPostgresChangePayload {

@@ -6,9 +6,8 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { dataset, projectId } from "@/sanity/env";
 import { formatDateDescription } from "@/lib/utils";
-import { Calistoga } from "next/font/google";
+import { calistoga } from "@/lib/fonts";
 
-const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 const builder = imageUrlBuilder({ projectId, dataset });
 
 export default function Posts({ posts }: { posts: SanityDocument[] }) {

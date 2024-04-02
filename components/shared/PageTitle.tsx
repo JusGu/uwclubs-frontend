@@ -1,8 +1,6 @@
+import { calistoga } from "@/lib/fonts";
 import AnimatedLogo from "./AnimatedLogo";
 import Link from "next/link";
-import { Calistoga } from "next/font/google";
-
-const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 
 interface IPageTitleProps {
   title: string;

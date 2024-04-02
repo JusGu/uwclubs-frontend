@@ -2,42 +2,16 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { createClient } from "@/utils/supabase/server";
 import { IEvent } from "@/app/events/models";
-import { cookies } from "next/headers";
 import LocationTime from "../LocationTime";
 import ClubEventsDropdown from "./ClubEventsDropdown";
 import { Separator } from "@/components/ui/separator";
 import EventDropdown from "./EventDropdown";
 
-export default async function EventCard({ event_id }: { event_id: string }) {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
-  const { data } = await supabase
-    .from("events")
-    .select(
-      `
-      id,
-      title,
-      start_time,
-      end_time,
-      location,
-      description,
-      guild_id,
-      channel_id,
-      message_id,
-      guilds ( short_name, description )
-      `
-    )
-    .eq("message_id", event_id)
-    .is("deleted_at", null);
-
-  //@ts-ignore
-  const event = data[0] as event;
+export default function EventCard({ event }: { event: IEvent }) {
 
   const getMessageLink = (event: IEvent) => {
     return `discord://discord.com/channels/${event.guild_id}/${event.channel_id}/${event.message_id}`;
