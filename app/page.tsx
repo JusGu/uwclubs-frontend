@@ -33,7 +33,7 @@ export default async function Index() {
               View Events
             </Button>
           </Link>
-          <Link href="/blog/join-as-a-club">
+          <Link href="/blog/how-to-join-as-a-club">
             <Button variant="link" size="lg" className="hover:underline">
               Join as a Club
             </Button>
