@@ -8,6 +8,16 @@ export const formatTime = (time: string) => {
   });
 };
 
+export const formatTimePicker = (time: string) => {
+  const date = new Date(time);
+  return date.toLocaleTimeString("en-US", {
+    timeZone: "America/New_York",
+    hour12: false,
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
+
 export const formatDateEST = (date: Date) => {
   return date.toLocaleDateString("en-US", {
     timeZone: "EST",
